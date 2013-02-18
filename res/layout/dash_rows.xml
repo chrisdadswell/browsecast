@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	>
+  
+<TextView android:id="@+id/text1"  
+android:text="Dashboard Options"       
+android:textSize="20sp"         
+android:textStyle="bold" 
+android:layout_width="fill_parent"         
+android:layout_height="50dip"
+android:gravity="center|left"
+android:scrollHorizontally="true" 
+android:textColor="@color/dashboard_row_title" 
+android:background="#00000000" android:padding="10dp"/>
+	
+<TextView android:id="@+id/text2" 
+android:layout_width="fill_parent"
+android:textColor="@color/dashboard_row_subtitle"  
+android:gravity="left"
+android:text="description"
+android:layout_height="40dip" 
+android:layout_marginTop="30dip" 
+android:paddingLeft="10dip" 
+android:paddingTop="5dip" 
+android:textSize="12sp" 
+android:typeface="sans" 
+android:background="#00000000"/>
+</RelativeLayout>

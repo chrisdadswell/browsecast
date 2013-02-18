@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="fill_parent" 
+android:layout_height="fill_parent">
+
+<TextView
+android:layout_width="fill_parent"
+android:textStyle="bold"
+android:textColor="#ffffff"
+android:id="@+id/tv_Title" 
+android:textSize="16dip" 
+android:padding="5dip" 
+android:layout_alignParentTop="true" 
+android:layout_height="30dip" >
+</TextView>
+
+<ListView
+    android:id="@id/android:list"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="40dip"
+    android:cacheColorHint="#00000000"
+    android:clipToPadding="true"
+    android:divider="#00000000"
+    android:dividerHeight="0dp"
+    android:drawSelectorOnTop="false"
+    android:fadeScrollbars="true"
+    android:hapticFeedbackEnabled="true"
+    android:scrollbarDefaultDelayBeforeFade="2000"
+    android:scrollbarFadeDuration="3000"
+    android:scrollingCache="true" />
+
+<RelativeLayout 
+android:layout_height="wrap_content" 
+android:layout_width="fill_parent" 
+android:id="@+id/RLayout">
+
+</RelativeLayout>
+
+</RelativeLayout>

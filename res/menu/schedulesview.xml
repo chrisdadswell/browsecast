@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/menu_viewstations"
+          android:icon="@drawable/ic_action_back"
+          android:title="@string/schedules_viewstations"
+          android:showAsAction="ifRoom|withText" />
+	
+		<item android:id="@+id/menu_browsedates"
+          android:icon="@drawable/ic_action_schedules"
+          android:title="@string/schedules_browsedates"
+          android:showAsAction="ifRoom|withText" />
+</menu>

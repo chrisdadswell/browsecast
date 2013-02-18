@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/dashboard_background"
+    android:orientation="vertical" >
+
+<TextView
+    android:id="@+id/text_subtitle"
+    android:text="@string/dashboard_subtitle"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@id/android:list"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:padding="10dp"
+    android:textColor="@color/dashboard_subtitle"
+    android:textSize="14dp"
+    android:textStyle="normal"
+    android:typeface="normal" 
+    />
+
+<ListView
+    android:id="@id/android:list"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_above="@+id/text_footer"
+    android:layout_marginLeft="5dip"
+    android:layout_marginRight="5dip"
+    android:layout_marginTop="55dip"
+    android:cacheColorHint="#00000000"
+    android:clipToPadding="true"
+    android:divider="#00000000"
+    android:dividerHeight="0.5dip"
+    android:drawSelectorOnTop="false"
+    android:fadeScrollbars="true"
+    android:focusable="true"
+    android:hapticFeedbackEnabled="true"
+    android:scrollbarDefaultDelayBeforeFade="2000"
+    android:scrollbarFadeDuration="3000"
+    android:scrollingCache="true"
+    android:textFilterEnabled="false" />
+
+<TextView
+    android:id="@+id/text_footer"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@id/android:list"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false"
+    android:padding="10dp"
+    android:textColor="@color/dashboard_footer_uptodate"
+    android:textSize="14dp"
+    android:textStyle="normal"
+    android:typeface="normal" 
+    />
+
+
+</RelativeLayout>

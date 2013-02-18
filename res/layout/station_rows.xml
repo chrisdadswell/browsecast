@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	>
+  
+<TextView android:text="Station Name"       
+android:textSize="20sp"         
+android:textStyle="bold" 
+android:layout_width="fill_parent"         
+android:layout_height="50dip"
+android:gravity="center|left"
+android:padding="10dip"
+android:scrollHorizontally="true" 
+android:textColor="@color/station_row_title" 
+android:background="#00000000" 
+android:id="@+id/txt_stationname"/>
+	
+<TextView android:layout_width="fill_parent" 
+android:gravity="right"
+android:text="Podcast Total"
+android:layout_height="25dip" 
+android:layout_marginTop="30dip" 
+android:paddingTop="5dip" 
+android:paddingRight="10dip"
+android:textSize="12sp" 
+android:typeface="sans" 
+android:background="#00000000" 
+android:textColor="@color/station_row_count" 
+android:id="@+id/txt_podcastname"
+/>
+
+<TextView android:layout_height="wrap_content" 
+android:layout_width="fill_parent" 
+android:id="@+id/txt_bar" 
+android:height="2dip" 
+android:layout_marginTop="42dip" 
+android:layout_marginLeft="10dip" 
+android:layout_marginRight="140dip">
+</TextView>
+</RelativeLayout>

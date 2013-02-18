@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_search"
+          android:title="@string/search_label"
+          android:hint="@string/search_hint"
+          android:icon="@drawable/ic_action_search"
+          android:showAsAction="ifRoom|collapseActionView"
+          android:actionViewClass="android.widget.SearchView" />
+    
+    <item android:id="@+id/menu_refresh"
+          android:icon="@drawable/ic_action_refresh"
+          android:title="@string/dashboard_refresh"
+          android:showAsAction="ifRoom|withText" />
+    
+    <item android:id="@+id/menu_blog"
+          android:icon="@drawable/ic_action_www"
+          android:title="@string/dashboard_blog"
+          android:showAsAction="ifRoom|withText" />
+    
+    <item android:id="@+id/menu_rss"
+          android:icon="@drawable/ic_share_rss"
+          android:title="@string/dashboard_rss"
+          android:showAsAction="ifRoom|withText" />
+    
+    <item android:id="@+id/menu_twitter"
+          android:icon="@drawable/ic_share_twitter"
+          android:title="@string/dashboard_twitter"
+          android:showAsAction="ifRoom|withText" />
+    
+    <item android:id="@+id/menu_gplus"
+          android:icon="@drawable/ic_action_refresh"
+          android:title="@string/dashboard_gplus"
+          android:showAsAction="ifRoom|withText" />
+    
+	<item android:id="@+id/menu_about"
+          android:icon="@drawable/ic_action_about"
+          android:title="@string/dashboard_about"
+          android:showAsAction="ifRoom|withText" />
+    
+</menu>
+
+<!-- Dashboard - search, refresh, blog, rss, twitter, g+, about -->

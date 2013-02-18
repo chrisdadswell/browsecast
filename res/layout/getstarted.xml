@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@color/dlg_background"
+   	android:layout_width="fill_parent"
+   	android:layout_height="fill_parent"
+   	android:padding="15dip">
+   	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="horizontal"
+	    android:isScrollContainer="true"
+	    android:scrollbars="vertical">
+	    <LinearLayout
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="fill_parent"
+	    	android:orientation="vertical">
+			<ImageView
+	   			android:src="@drawable/ic_action_help"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="top"
+	        	android:layout_marginRight="10dp" />
+	       <LinearLayout
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="fill_parent"
+	    	android:orientation="vertical"/>
+	    </LinearLayout>
+	    <LinearLayout
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="fill_parent"
+	    	android:orientation="vertical">
+	    	<TextView
+	      		android:text="@string/gettingstarted_title"
+	      		android:textStyle="bold"
+	      		android:textColor="@color/dlg_text"
+	      		android:background="@color/dlg_title_background"
+	      		android:layout_width="fill_parent" android:layout_height="wrap_content" android:height="30dip" android:gravity="left|center"/>
+	      	<TextView
+	      		android:id="@string/app_version"
+	      		android:textColor="@color/dlg_text"
+	      		android:textSize="11.5sp"
+	      		android:layout_width="wrap_content"
+	      		android:layout_height="wrap_content" />
+	   		<TextView
+	      		android:text="@string/gettingstarted_text"
+	      		android:textColor="@color/dlg_text"
+	      		android:textSize="12.5sp"
+	      		android:layout_width="wrap_content"
+	      		android:layout_height="wrap_content" android:layout_marginTop="2dp"/>
+	      	<TextView
+	      		android:text="@string/gettingstarted_url"
+	      		android:textColor="@color/dlg_text"
+	      		android:textSize="11.0sp"
+	      		android:layout_width="wrap_content"
+	      		android:layout_height="wrap_content"
+	      		android:layout_marginTop="8dp" 
+	      		android:clickable="true" 
+	      		android:autoLink="all"/>
+	    </LinearLayout>
+	</LinearLayout>
+</ScrollView>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">BrowseCast HD</string>
+<string name="app_version">Version 1.0</string>
+<string name="app_description">BBC Podcast browsing application. Developed by Christian Dadswell</string>
+<string name="about_title">About</string><string name="about_text">"Thanks for downloading BrowseCast.
+\nThis is a very simple application to allow for easy searching/browsing of BBC Radio Podcasts.\n\n
+\nPlease feel free to feedback to the email address below if you have any problems or leave a comment on\n
+\nhttp://www.chrisdadswell.co.uk
+\nIf you enjoy this application, please rate and comment on Google Play. Thank you."</string>
+
+<string name="about_code_copyright">"Copyright © Christian Dadswell 2013 (chrisdadswell@gmail.com)
+\nLicensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at\nhttp://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+\nSee the License for the specific language governing permissions and limitations under the License.
+\nSource code available at http://code.google.com/p/android-ced/source/browse/#svn/browsecast/trunk"</string>
+<string name="about_license">Acknowledgements\nSpecial thanks go to my family whom I love very much and who gifted me the time to spend writing this application.\n\nMy brother for kindly hosting www.chrisdadswell.co.uk.</string>
+<string name="about_url">http://www.chrisdadswell.co.uk/browsecast</string>
+
+<string name="gettingstarted_title">Getting Started</string>
+<string name="gettingstarted_url">http://bit.ly/9ahlW6</string>
+<string name="gettingstarted_text">"Using BrowseCast:
+\nWhen you start BrowseCast for the first time it will download the latest BBC Podcasts listings to your SD card (/sdcard/browsecast/xml/podcasts.xml).
+The BBC update the Podcast listings daily, but you do not have to update daily if you do not wish to do so.
+\n:: The Dashboard ::
+\n\nThe following options will be available to you;\n\n
+Podcast Search - Enter a podcast name search. i.e., Desert\n\nYou can press the search icon in the action bar or press the\n
+hardware search button if available on your handset/tablet.\n
+Browse Podcasts by Station - Returns a list of BBC Radio stations.\n\n
+\n\nSearching for/or selecting a Station will present you with relevant Podcasts.
+\n\nSelecting a podcast will present you with further information about the podcast.
+\n\nListen Live - Listen to live BBC Radio. This only works on select handsets and firmware revisions.
+\n\nRadio Schedules - Browse the wealth of BBC Radio schedules
+\n\nRadio iPlayer by Station - Browse the iPlayer Radio listings and listen to past recordings via your browser./n
+(Flash and non Chrome browser required. Not compatible with Android Jelly Bean.)
+\n\nPodcast Help and Assistance - Learn about Podcasts and applications that can be used for Podcasting on Android.
+</string>
+<string name="search_label">Search for a Podcast</string>
+<string name="search_hint">Search for a Podcast</string>
+<string name="lists_title"></string>
+<string name="dashboard_about">About BrowseCast</string>
+<string name="about_image">About Image</string>
+<string name="podcast_name">Podcast name</string>
+<string name="podcast_duration">Podcast duration</string>
+<string name="podcast_webpage">Podcast webpage</string>
+<string name="podcast_description">Podcast description</string>
+<string name="podcast_sharetopodcastapp">Share to default Podcast application</string>
+<string name="podcast_shareto">Share Podcast subscription with another application</string>
+<string name="podcast_copytoclipboard">Copy Podcast subscription to clipboard</string>
+<string name="dashboard_refresh">Refresh Podcast Information</string>
+<string name="dashboard_blog">Visit the BrowseCast blog</string>
+<string name="dashboard_rss">Add BrowseCast RSS feed</string>
+<string name="dashboard_twitter">BrowseCast on Twitter</string>
+<string name="dashboard_gplus">BrowseCast on Google+</string>
+<string name="dashboard_subtitle" >Podcast listings are updated daily by the BBC.</string>
+<string name="dashboard_footer_outofdate">Local listings status: Not up to date</string>
+<string name="dashboard_footer_uptodate">Local listings status: Up to date</string>
+<string name="bystation_bbc_www">BBC Radio Stations Website</string>
+<string name="url_bbcradio">http://www.bbc.co.uk/mobile/radio</string>
+<string name="dialog_nointernet_msg">A BBC Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.</string>
+<string name="dialog_nointernet_title">Cannot download file</string>
+<string name="dashboard_menu_bystation_subtitle">View available BBC Radio stations with Podcasts</string>
+<string name="dashboard_menu_bystation">Browse Podcasts by Station</string>
+<string name="schedules_setregion">Change your current region</string>
+<string name="schedules_current_region">Current region is set to </string>
+<string name="bystation_subtitle">Select a BBC station to view Podcasts</string>
+<string name="schedules_viewstations">View a different stations schedule</string>
+<string name="schedules_browsedates">Browse a different schedule date</string>
+<string name="podcast_imageview">Podcast Image</string>
+<string name="iplayer_bbc_www">BBC Radio iPlayer Website</string>
+
+</resources>
