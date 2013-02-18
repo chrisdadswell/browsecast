@@ -53,7 +53,6 @@
         <activity android:name=".Activity_Preferences"></activity>
         <activity android:name=".Activity_SchedulesWebView"></activity>
         <activity android:name=".Activity_About"></activity>
-        <activity android:name=".Activity_ListenLive"></activity>
         <activity android:name=".Activity_Help"></activity>
         <activity android:name=".Activity_iPlayer"></activity>
 

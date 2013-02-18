@@ -283,15 +283,12 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 				fivelive_intent.setData(Uri.parse("http://www.bbc.co.uk/podcasts/5live.mp"));
 				startActivity(fivelive_intent);
 		    }else if(id == 2){
-		    	Intent intentListenLive = new Intent(Activity_Dashboard.this, Activity_ListenLive.class);
-		    	Activity_Dashboard.this.startActivity(intentListenLive);
-		    }else if(id == 3){
 		    	Intent intentSchedules = new Intent(Activity_Dashboard.this, Activity_Schedules.class);
 		    	Activity_Dashboard.this.startActivity(intentSchedules);
-		    }else if(id == 4){
+		    }else if(id == 3){
 		    	Intent intentiPlayer = new Intent(Activity_Dashboard.this, Activity_iPlayer.class);
 		    	Activity_Dashboard.this.startActivity(intentiPlayer);
-		    }else if(id == 5){
+		    }else if(id == 4){
 		    	Intent intentHelp = new Intent(Activity_Dashboard.this, Activity_Help.class);
 		    	Activity_Dashboard.this.startActivity(intentHelp);
 		    }
