@@ -251,11 +251,6 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 		 temp1.put("desc", "5Live Podcasts Website");
 		 dash_list.add(temp1);
 		 
-//		 HashMap<String,String> temp2 = new HashMap<String,String>();
-//		 temp2.put("option","Listen Live");
-//		 temp2.put("desc", "Listen Live to available BBC stations");
-//		 dash_list.add(temp2);
-		 
 		 HashMap<String,String> temp3 = new HashMap<String,String>();
 		 temp3.put("option","Radio Schedules");
 		 temp3.put("desc", "View BBC Radio scheduling information");
@@ -278,19 +273,24 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 		    if(id == 0) {
 		    	Intent intentStation = new Intent(Activity_Dashboard.this, Activity_ByStation.class);
 		    	Activity_Dashboard.this.startActivity(intentStation);
+				overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
 		    }else if(id == 1){
 		    	Intent fivelive_intent = new Intent(Intent.ACTION_VIEW); 
 				fivelive_intent.setData(Uri.parse("http://www.bbc.co.uk/podcasts/5live.mp"));
 				startActivity(fivelive_intent);
+				overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
 		    }else if(id == 2){
 		    	Intent intentSchedules = new Intent(Activity_Dashboard.this, Activity_Schedules.class);
 		    	Activity_Dashboard.this.startActivity(intentSchedules);
+		    	overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
 		    }else if(id == 3){
 		    	Intent intentiPlayer = new Intent(Activity_Dashboard.this, Activity_iPlayer.class);
 		    	Activity_Dashboard.this.startActivity(intentiPlayer);
+		    	overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
 		    }else if(id == 4){
 		    	Intent intentHelp = new Intent(Activity_Dashboard.this, Activity_Help.class);
 		    	Activity_Dashboard.this.startActivity(intentHelp);
+		    	overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
 		    }
 	}
 	
@@ -398,6 +398,7 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
     	Log.d(APP_TAG, ACT_TAG + "... OnDestroy ...");
     	clearDashList();
     	Log.d(APP_TAG, ACT_TAG + "ONDESTROY: Clearing Dashlist");
+    	//overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
 	public boolean onClose() {

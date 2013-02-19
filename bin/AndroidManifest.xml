@@ -38,7 +38,7 @@
 
         <activity android:name=".Activity_ByStation">
                     <meta-data android:name="android.app.default_searchable"
-                   android:value=".Activity_ByPodcast" /></activity>
+                   android:value=".Activity_ByPodcast"/></activity>
         
         <activity android:name=".Activity_ByPodcast">
         <intent-filter>
