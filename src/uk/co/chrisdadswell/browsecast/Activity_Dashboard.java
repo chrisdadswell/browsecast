@@ -174,9 +174,9 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
         		Log.d(APP_TAG, ACT_TAG + "INIT: XML has already been downloaded today");
         		if(getFileSize() != 0) { // DOWNLOADED TODAY ALREADY AND NOT 0 BYTES START ACTIVITY_BYSTATION
         			Log.d(APP_TAG, ACT_TAG + "INIT: XML downloaded and not 0 bytes, display dashboard");
-       	    	    dashboard_subtitle.setText(R.string.dashboard_footer_uptodate);
-       	    	    dashboard_subtitle.setTextColor(getResources().getColor(R.color.dashboard_footer_uptodate));
-       	    	    dashboard_subtitle.invalidate();
+       	    	    //dashboard_subtitle.setText(R.string.dashboard_footer_uptodate);
+       	    	    //dashboard_subtitle.setTextColor(getResources().getColor(R.color.dashboard_footer_uptodate));
+       	    	    //dashboard_subtitle.invalidate();
         			return true;
         		}else{ // FILE AVAILABLE. BUT IS 0 BYTES. NEED TO CHECK INTERNET AND DOWNLOAD
         			Log.d(APP_TAG, ACT_TAG + "INIT: XML exists, but is 0 bytes, attempt re-download if internet available");
@@ -228,9 +228,9 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
     		break;
    	 	case 1: // SUCCESSFULL
    	 		Log.d(APP_TAG, ACT_TAG + "HANDLER: Download successful");
-   	 		dashboard_subtitle.setText(R.string.dashboard_footer_uptodate);
-   	 		dashboard_subtitle.setTextColor(getResources().getColor(R.color.dashboard_footer_uptodate));
-   	 		dashboard_subtitle.invalidate();
+//   	 		dashboard_subtitle.setText(R.string.dashboard_footer_uptodate);
+//   	 		dashboard_subtitle.setTextColor(getResources().getColor(R.color.dashboard_footer_uptodate));
+//   	 		dashboard_subtitle.invalidate();
    	 		progressDialog.dismiss();
    	 		break;
     	}
