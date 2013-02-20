@@ -41,6 +41,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Activity_Dashboard extends ListActivity implements Runnable, SearchView.OnQueryTextListener, SearchView.OnCloseListener { 
 	
@@ -50,20 +51,12 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 	static String todayDay = null;
 	static String fileDay = null;
 	static ArrayList<HashMap<String,String>> stationNameArrayList = new ArrayList<HashMap<String,String>>();
-	private ProgressDialog progressDialog;
+	//private ProgressDialog progressDialog;
 	
 	@Override
     public void onStart() {
     	super.onStart();
     	Log.d(APP_TAG, ACT_TAG + "... OnStart...");
-    	Log.d(APP_TAG, ACT_TAG + "ONSTART: Detecting for PocketCasts");
-    	// com.google.android.youtube
-    	//au.com.shiftjelly.pocketcasts
-//    	if(isAppInstalled("au.com.shiftjelly.pocketcasts")) {
-//    		Toast.makeText(Activity_Dashboard.this, "\n\nPocketCasts installed\n\n", Toast.LENGTH_SHORT).show();
-//    	}else{
-//    		Toast.makeText(Activity_Dashboard.this, "\n\nPocketCasts not installed\n\n", Toast.LENGTH_SHORT).show();
-//    	}
     }
 	
      // CREATE
@@ -116,16 +109,13 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 
 		case R.id.menu_refresh:
 			if(isInternetOn()) {
-				boolean isDeleted = Func_FileIO.DeleteFile(Constants.mainxml);
-				if(isDeleted){
-					resetData();
-					Init();
-				}else{
-					finish();
-				}
-				return true;
+				Log.d(APP_TAG, ACT_TAG + "INIT: We have internet, go get it!");
+				//resetData();
+				Init();
+				Toast.makeText(this, "\n\nWe already have a Podcasts index file!\n\n", Toast.LENGTH_SHORT).show();
 			}else{
-				
+				Log.d(APP_TAG, ACT_TAG + "INIT: No internet, denied!");
+				finish();
 			}
 			return true;
 			
@@ -155,39 +145,36 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
     public boolean Init() {
 		Log.d(APP_TAG, ACT_TAG + "METHOD: Init()");
 		TextView dashboard_subtitle = (TextView) findViewById(R.id.text_subtitle);
-     	// CHECK IF XML HAS BEEN ALREADY DOWNLOADED
-		
+
+		// CHECK IF XML HAS BEEN ALREADY DOWNLOADED
         if(!Func_FileIO.FileOrDirectoryExists(Constants.mainxml)) {
         	Log.d(APP_TAG, ACT_TAG + "INIT: XML doesn't exist");
         	if(isInternetOn()) {
-        		progressDialog = ProgressDialog.show(this, "Accessing BBC website", "Downloading BBC Podcast listings", true, false);
+        		Log.d(APP_TAG, ACT_TAG + "INIT: Internet available, downloading file");
         		Thread thread = new Thread(Activity_Dashboard.this);
         		thread.start();
         		return true;
         	}else{
+        		Log.d(APP_TAG, ACT_TAG + "INIT: No internet, denied!");
         		noInternetDialog("No Internet Connection", "Unable to download Podcast listings.\n\nThere appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");
         		return false;
         	}
         }else{ // XML EXISTS, WHATS THE TIME STAMP OF THE FILE
-        	Log.d(APP_TAG, ACT_TAG + "INIT: XML exists");
+        	Log.d(APP_TAG, ACT_TAG + "INIT: XML exists, checking date stamp");
         	if (getFileDay().equals(getTodayDay())){
         		Log.d(APP_TAG, ACT_TAG + "INIT: XML has already been downloaded today");
         		if(getFileSize() != 0) { // DOWNLOADED TODAY ALREADY AND NOT 0 BYTES START ACTIVITY_BYSTATION
         			Log.d(APP_TAG, ACT_TAG + "INIT: XML downloaded and not 0 bytes, display dashboard");
-       	    	    //dashboard_subtitle.setText(R.string.dashboard_footer_uptodate);
-       	    	    //dashboard_subtitle.setTextColor(getResources().getColor(R.color.dashboard_footer_uptodate));
-       	    	    //dashboard_subtitle.invalidate();
         			return true;
         		}else{ // FILE AVAILABLE. BUT IS 0 BYTES. NEED TO CHECK INTERNET AND DOWNLOAD
         			Log.d(APP_TAG, ACT_TAG + "INIT: XML exists, but is 0 bytes, attempt re-download if internet available");
         			if(isInternetOn()) {
         				Log.d(APP_TAG, ACT_TAG + "INIT: Internet available, downloading ...");
-        				progressDialog = ProgressDialog.show(this, "Corrupt local XML found...", "Downloading latest BBC Podcasts listings", true, true);
         				Thread thread = new Thread(this);
         				thread.start();
         				return true;
         			}else{ // NO INTERNET, RAISE AN ALERT AND FORCE USER TO QUIT
-        				Log.d(APP_TAG, ACT_TAG + "INIT: No internet, display No internet dialog and quit");
+        				Log.d(APP_TAG, ACT_TAG + "INIT: No internet, display no internet dialog and quit");
         				noInternetDialog("No internet connection", "A new Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");
         			}
         		}
@@ -204,7 +191,10 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 
 	public void run() {
 	boolean msgResult = false;
+	TextView dashboard_subtitle = (TextView) findViewById(R.id.text_subtitle);
 	Log.d(APP_TAG, ACT_TAG + "RUN: Starting download of XML file ...");
+	dashboard_subtitle.setText("Downloading Podcasts index, hold tight...");
+	dashboard_subtitle.invalidate();
 	msgResult = Func_Download.DownloadFile("http://www.bbc.co.uk/podcasts.xml", Constants.xmldir);
 	if(msgResult == true){
 		Log.d(APP_TAG, ACT_TAG + "RUN: Thread Successful");
@@ -223,15 +213,12 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
     	switch(msg.what) {
     	case 0: // UNSUCCESSFUL
     		Log.d(APP_TAG, ACT_TAG + "HANDLER: Download Unsuccessful");
-    		progressDialog.dismiss();
-    		noInternetDialog("Cannot download file", "A BBC Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");
+    		dashboard_subtitle.setText("Couldn't download Podcasts index file, try a refresh...");
+    		noInternetDialog("Boo! No Podcasts index file found", "A BBC Podcasts index file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.\n");
     		break;
    	 	case 1: // SUCCESSFULL
    	 		Log.d(APP_TAG, ACT_TAG + "HANDLER: Download successful");
-//   	 		dashboard_subtitle.setText(R.string.dashboard_footer_uptodate);
-//   	 		dashboard_subtitle.setTextColor(getResources().getColor(R.color.dashboard_footer_uptodate));
-//   	 		dashboard_subtitle.invalidate();
-   	 		progressDialog.dismiss();
+   	 		dashboard_subtitle.setText("Podcasts index file downloaded, happy days!");
    	 		break;
     	}
     }
@@ -307,19 +294,6 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
          return false;
      }
         	 
-/*         	 if ( connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED || connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTING || connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING || connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED ) {
-          		Log.d(APP_TAG, ACT_TAG + "ISINTERNETON: Connectivity available: "); 
-          		Log.d(APP_TAG, ACT_TAG + "3G = " + connec.getNetworkInfo(0).getState().toString());
-          		Log.d(APP_TAG, ACT_TAG + "WiFi = " + connec.getNetworkInfo(1).getState().toString());
-          		return true; 
-      		 } else if ( connec.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED ||  connec.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED  ) {
-      			Log.d(APP_TAG, ACT_TAG + "ISINTERNETON: No connectivity");
-          		Log.d(APP_TAG, ACT_TAG + "3G = " + connec.getNetworkInfo(0).getState().toString());
-          		Log.d(APP_TAG, ACT_TAG + "WiFi = " + connec.getNetworkInfo(1).getState().toString());
-      			return false;
-      		 } 	 
-*/  
-     
      // DIALOGS
      protected void noInternetDialog(String title, String message) { 
     	 Log.d(APP_TAG, ACT_TAG + "NOINTERNETDIALOG: No internet");
@@ -352,7 +326,7 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
     		 
      	 .setNeutralButton("Quit", new DialogInterface.OnClickListener() { 
     		 public void onClick(DialogInterface dialog, int whichButton){
-    			 Log.d(APP_TAG, ACT_TAG + "DIALOG: Quitting BBCBC");
+    			 Log.d(APP_TAG, ACT_TAG + "DIALOG: Quitting BrowseCast");
     			 finish();
     		 }
     	 });
@@ -398,7 +372,6 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
     	Log.d(APP_TAG, ACT_TAG + "... OnDestroy ...");
     	clearDashList();
     	Log.d(APP_TAG, ACT_TAG + "ONDESTROY: Clearing Dashlist");
-    	//overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
 	public boolean onClose() {

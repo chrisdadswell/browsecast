@@ -4,14 +4,16 @@
          android:layout_width="fill_parent" 
          android:layout_height="fill_parent">
 
-<TextView android:id="@+id/tv_Title" 
-android:layout_alignParentTop="true"
-android:layout_width="fill_parent"
-android:textStyle="bold"
-android:textColor="@color/main_title"
-android:textSize="16dip" 
-android:padding="5dip" 
-android:layout_height="30dip">
+<TextView
+    android:id="@+id/tv_Title"
+    android:layout_width="fill_parent"
+    android:layout_height="32dp"
+    android:layout_alignParentTop="true"
+    android:padding="5dip"
+    android:textColor="@color/main_title"
+    android:textSize="16dip"
+    android:textStyle="bold" >
+
 </TextView>
 
 <ProgressBar android:layout_centerInParent="true" 

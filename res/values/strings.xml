@@ -53,7 +53,7 @@ Browse Podcasts by Station - Returns a list of BBC Radio stations.\n\n
 <string name="dashboard_rss">Add BrowseCast RSS feed</string>
 <string name="dashboard_twitter">BrowseCast on Twitter</string>
 <string name="dashboard_gplus">BrowseCast on Google+</string>
-<string name="dashboard_subtitle" >Podcast listings are updated daily by the BBC.</string>
+<string name="dashboard_subtitle" ></string>
 <string name="dashboard_footer_outofdate">Local listings status: Not up to date</string>
 <string name="dashboard_footer_uptodate">Local listings status: Up to date</string>
 <string name="bystation_bbc_www">BBC Radio Stations Website</string>

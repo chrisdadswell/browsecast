@@ -76,7 +76,7 @@ public class Activity_ByPodcast extends ListActivity {
 
 		// INIT WIDGETS
 		TextView wTitle = (TextView) findViewById(R.id.tv_Title);
-		wTitle.setText(selStation);
+		wTitle.setText("Select a Podcast to view details");
 		
 // STATION		
 		if(selStation !=null) {

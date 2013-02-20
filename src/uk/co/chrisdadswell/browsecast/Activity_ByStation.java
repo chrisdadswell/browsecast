@@ -215,7 +215,7 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 	    protected void onPreExecute() {
 	    	wPbar.setVisibility(View.VISIBLE);
 			
-	    	wTitle.setText("Calculating Stations with Podcasts ...");
+	    	wTitle.setText("Reticulating splines, please wait...");
 	    	wTitle.invalidate();
 	    }
 	    
@@ -237,7 +237,6 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 			super.onProgressUpdate(ARRAYLIST_STATUS);
 			Log.d(APP_TAG, ACT_TAG + "ASYNCTASK: OnProgressUpdate");
 			String arrliststatus = ARRAYLIST_STATUS[0].toString();
-			
 			if (ARRAYLIST_STATUS[0]){
 				Log.d(APP_TAG, ACT_TAG + "AYSNCTASK: ArrayList full ?: " + arrliststatus);
 			}else{
