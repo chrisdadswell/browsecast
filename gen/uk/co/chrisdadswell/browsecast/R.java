@@ -97,13 +97,12 @@ public final class R {
         public static final int getstarted=0x7f030003;
         public static final int help=0x7f030004;
         public static final int iplayer=0x7f030005;
-        public static final int listenlive=0x7f030006;
-        public static final int lists=0x7f030007;
-        public static final int podcast_rows=0x7f030008;
-        public static final int podcastview=0x7f030009;
-        public static final int schedules=0x7f03000a;
-        public static final int station_rows=0x7f03000b;
-        public static final int stations=0x7f03000c;
+        public static final int lists=0x7f030006;
+        public static final int podcast_rows=0x7f030007;
+        public static final int podcastview=0x7f030008;
+        public static final int schedules=0x7f030009;
+        public static final int station_rows=0x7f03000a;
+        public static final int stations=0x7f03000b;
     }
     public static final class menu {
         public static final int bypodcast=0x7f080000;

@@ -21,7 +21,6 @@ import java.util.HashMap;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -41,7 +40,6 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Activity_Dashboard extends ListActivity implements Runnable, SearchView.OnQueryTextListener, SearchView.OnCloseListener { 
 	
@@ -50,8 +48,8 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 	final static Date todayDate = new Date();
 	static String todayDay = null;
 	static String fileDay = null;
+	private boolean listingDecision = true;
 	static ArrayList<HashMap<String,String>> stationNameArrayList = new ArrayList<HashMap<String,String>>();
-	//private ProgressDialog progressDialog;
 	
 	@Override
     public void onStart() {
@@ -105,14 +103,12 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 			Intent aboutActivity = new Intent(Activity_Dashboard.this, Activity_About.class);
 			startActivity(aboutActivity);
 			return true;
- 
 
 		case R.id.menu_refresh:
 			if(isInternetOn()) {
 				Log.d(APP_TAG, ACT_TAG + "INIT: We have internet, go get it!");
-				//resetData();
+				resetData();
 				Init();
-				Toast.makeText(this, "\n\nWe already have a Podcasts index file!\n\n", Toast.LENGTH_SHORT).show();
 			}else{
 				Log.d(APP_TAG, ACT_TAG + "INIT: No internet, denied!");
 				finish();
@@ -141,7 +137,7 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 		}
 		return false;
 	}
-	
+	    
     public boolean Init() {
 		Log.d(APP_TAG, ACT_TAG + "METHOD: Init()");
 		TextView dashboard_subtitle = (TextView) findViewById(R.id.text_subtitle);
@@ -156,10 +152,11 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
         		return true;
         	}else{
         		Log.d(APP_TAG, ACT_TAG + "INIT: No internet, denied!");
-        		noInternetDialog("No Internet Connection", "Unable to download Podcast listings.\n\nThere appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");
+        		noInternetNoQuitDialog("No Internet Connection", "Unable to download Podcast listings.\n\nThere appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");
         		return false;
         	}
-        }else{ // XML EXISTS, WHATS THE TIME STAMP OF THE FILE
+        }else{ 
+        // XML EXISTS
         	Log.d(APP_TAG, ACT_TAG + "INIT: XML exists, checking date stamp");
         	if (getFileDay().equals(getTodayDay())){
         		Log.d(APP_TAG, ACT_TAG + "INIT: XML has already been downloaded today");
@@ -180,9 +177,23 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
         		}
         	}else{ // OUT OF DATE XML, ADVISE USER AN UPDATE IS AVAILABLE
         		Log.d(APP_TAG, ACT_TAG + "INIT: XML is a day old, show the subtitle");
-        		dashboard_subtitle.setText(R.string.dashboard_footer_outofdate);
-        		dashboard_subtitle.setTextColor(getResources().getColor(R.color.dashboard_footer_outofdate));
-        		dashboard_subtitle.invalidate();
+        		downloadNewListingsDialog("Download or continue with current listings ?", "\nDo you wish to download new listings or continue with the current listings ?\n");        		
+        		if(listingDecision = true){
+        			if(isInternetOn()) {
+        				Log.d(APP_TAG, ACT_TAG + "INIT: Internet available, downloading ...");
+        				Thread thread = new Thread(this);
+        				thread.start();
+        				return true;
+        			}else{ // NO INTERNET, RAISE AN ALERT AND FORCE USER TO QUIT
+        				Log.d(APP_TAG, ACT_TAG + "INIT: No internet, display no internet dialog and quit");
+        				noInternetDialog("No internet connection", "A new Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");
+        			}
+        		}else{
+        			//
+        		}
+        		//dashboard_subtitle.setText(R.string.dashboard_footer_outofdate);
+        		//dashboard_subtitle.setTextColor(getResources().getColor(R.color.dashboard_footer_outofdate));
+        		//dashboard_subtitle.invalidate();
         		return true;
         	}
         }
@@ -214,11 +225,11 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
     	case 0: // UNSUCCESSFUL
     		Log.d(APP_TAG, ACT_TAG + "HANDLER: Download Unsuccessful");
     		dashboard_subtitle.setText("Couldn't download Podcasts index file, try a refresh...");
-    		noInternetDialog("Boo! No Podcasts index file found", "A BBC Podcasts index file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.\n");
+    		noInternetDialog("Boo! No Podcasts listings found", "A BBC Podcasts listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.\n");
     		break;
    	 	case 1: // SUCCESSFULL
    	 		Log.d(APP_TAG, ACT_TAG + "HANDLER: Download successful");
-   	 		dashboard_subtitle.setText("Podcasts index file downloaded, happy days!");
+   	 		dashboard_subtitle.setText("");
    	 		break;
     	}
     }
@@ -333,6 +344,31 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
     	 alertbox.show(); 
      }
 
+     protected void downloadNewListingsDialog(String title, String message) { 
+    	 Log.d(APP_TAG, ACT_TAG + "DOWNLOADNEWLISTINGSDIALOG: Download new file or not");
+    	 AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
+    	 alertbox.setMessage(message) 
+    	 .setTitle(title) 
+    	 .setCancelable(true) 
+     	 .setIcon(R.drawable.ic_action_about)
+     	 .setPositiveButton("Download new listings", new DialogInterface.OnClickListener() { 
+    		 public void onClick(DialogInterface dialog, int whichButton){
+    			 Log.d(APP_TAG, ACT_TAG + "DOWNLOADNEWLISTINGSDIALOG: Download new file");
+    			 listingDecision = true;
+    		 }
+     	 })
+    		 
+     	 .setNeutralButton("Use current listings", new DialogInterface.OnClickListener() { 
+    		 public void onClick(DialogInterface dialog, int whichButton){
+    			 Log.d(APP_TAG, ACT_TAG + "DOWNLOADNEWLISTINGSDIALOG: Resuming with current file");
+    			 listingDecision = false;
+    			 dialog.dismiss();
+    		 }
+    	 });
+    	 alertbox.show(); 
+     }
+
+     
      private void createAppDirectory() {
     	 Log.d(APP_TAG, ACT_TAG + "CREATEAPPDIRECTORY: Create application directories");
     	 Func_FileIO.CreateDirectory(Constants.appdir);

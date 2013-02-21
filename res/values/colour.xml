@@ -11,9 +11,9 @@
 <color name="dashboard_background">#000000</color>
 <color name="dashboard_subtitle">#ffffff</color>
 <color name="dashboard_footer_uptodate">#40FF00</color>
-<color name="dashboard_footer_outofdate">#FF0000</color>
+<color name="dashboard_footer_outofdate">#00CCFF</color>
 <color name="dashboard_row_title">#ffffff</color>
-<color name="dashboard_row_subtitle">#1EA8CC</color>
+<color name="dashboard_row_subtitle">#00CCFF</color>
 
 <color name="station_row_title">#ffffff</color>
 <color name="station_row_count">#1EA8CC</color>
