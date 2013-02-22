@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 <color name="dlg_text">#ffffff</color>
 <color name="dlg_background">#000000</color>
@@ -20,5 +19,7 @@
 
 <color name="podcast_row_title">#ffffff</color>
 <color name="podcast_row_count">#1EA8CC</color>
+<color name="toast_background">#C0C0C0</color>
+<color name="toast_text">#00CCFF</color>
 
 </resources>

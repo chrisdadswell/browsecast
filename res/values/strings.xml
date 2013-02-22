@@ -69,5 +69,6 @@ Browse Podcasts by Station - Returns a list of BBC Radio stations.\n\n
 <string name="schedules_browsedates">Browse a different schedule date</string>
 <string name="podcast_imageview">Podcast Image</string>
 <string name="iplayer_bbc_www">BBC Radio iPlayer Website</string>
+<string name="toast_image_description">BrowseCast Logo</string>
 
 </resources>

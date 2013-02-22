@@ -48,7 +48,7 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 	final static Date todayDate = new Date();
 	static String todayDay = null;
 	static String fileDay = null;
-	private boolean listingDecision = true;
+	private boolean listingDecision = false; 
 	static ArrayList<HashMap<String,String>> stationNameArrayList = new ArrayList<HashMap<String,String>>();
 	
 	@Override
@@ -177,19 +177,15 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
         		}
         	}else{ // OUT OF DATE XML, ADVISE USER AN UPDATE IS AVAILABLE
         		Log.d(APP_TAG, ACT_TAG + "INIT: XML is a day old, show the subtitle");
-        		downloadNewListingsDialog("Download or continue with current listings ?", "\nDo you wish to download new listings or continue with the current listings ?\n");        		
-        		if(listingDecision = true){
-        			if(isInternetOn()) {
-        				Log.d(APP_TAG, ACT_TAG + "INIT: Internet available, downloading ...");
-        				Thread thread = new Thread(this);
-        				thread.start();
-        				return true;
-        			}else{ // NO INTERNET, RAISE AN ALERT AND FORCE USER TO QUIT
-        				Log.d(APP_TAG, ACT_TAG + "INIT: No internet, display no internet dialog and quit");
-        				noInternetDialog("No internet connection", "A new Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");
-        			}
-        		}else{
-        			//
+        		//downloadNewListingsDialog("Download or continue with current listings ?", "\nDo you wish to download new listings or continue with the current listings ?\n");        		
+        		if(isInternetOn()) {
+        			Log.d(APP_TAG, ACT_TAG + "INIT: Internet available, downloading ...");
+        			Thread thread = new Thread(this);
+        			thread.start();
+        			return true;
+        		}else{ // NO INTERNET, RAISE AN ALERT AND FORCE USER TO QUIT
+        			Log.d(APP_TAG, ACT_TAG + "INIT: No internet, display no internet dialog and quit");
+        			noInternetDialog("No internet connection", "A new Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");
         		}
         		//dashboard_subtitle.setText(R.string.dashboard_footer_outofdate);
         		//dashboard_subtitle.setTextColor(getResources().getColor(R.color.dashboard_footer_outofdate));
@@ -421,6 +417,28 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 	public boolean onQueryTextSubmit(String arg0) {
 		return false;
 	}
+	
+//	// get your custom_toast.xml ayout
+//	LayoutInflater inflater = getLayoutInflater();
+//
+//	View layout = inflater.inflate(R.layout.custom_toast,
+//	  (ViewGroup) findViewById(R.id.custom_toast_layout_id));
+//
+//	// set a dummy image
+//	ImageView image = (ImageView) layout.findViewById(R.id.image);
+//	image.setImageResource(R.drawable.ic_launcher);
+//
+//	// set a message
+//	TextView text = (TextView) layout.findViewById(R.id.text);
+//	text.setText("Button is clicked!");
+//
+//	// Toast...
+//	Toast toast = new Toast(getApplicationContext());
+//	toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+//	toast.setDuration(Toast.LENGTH_LONG);
+//	toast.setView(layout);
+//	toast.show();
+
 	
 //	private boolean isAppInstalled(String uri) {
 //	    PackageManager pm = getPackageManager();

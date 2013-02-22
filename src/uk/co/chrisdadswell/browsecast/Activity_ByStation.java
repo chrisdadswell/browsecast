@@ -142,6 +142,7 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 			    String stationTextShortName = Xml_MainDataset.GetNetworkInfo(selectedStation);
 			    Intent radioWeb_intent = new Intent(android.content.Intent.ACTION_VIEW,Uri.parse("http://www.bbc.co.uk/" + stationTextShortName));
 				startActivity(radioWeb_intent);
+				overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
 			}
 		});
 
@@ -162,6 +163,7 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 	    byPodcast_intent.setClass(view.getContext(), Activity_ByPodcast.class);
 	    byPodcast_intent.putExtra("SelectedStation", selectedStation);
 	    startActivity(byPodcast_intent);
+	    overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
 	}
 
     @Override
@@ -185,11 +187,13 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 			Intent intent = new Intent(this, Activity_Dashboard.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
+			overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
 			return true;
 			
 		case R.id.menu_bbcradio_www:
         	Intent stationURL_intent = new Intent(android.content.Intent.ACTION_VIEW,Uri.parse(Constants.urlBBCRadio));
 			startActivity(stationURL_intent);
+			overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
 			return true;
 		}
 		return false;
