@@ -59,7 +59,6 @@ public final class R {
         public static final int ProgressBar=0x7f090016;
         public static final int RLayout=0x7f090008;
         public static final int custom_toast_layout_id=0x7f090000;
-        public static final int image=0x7f090001;
         public static final int imgview_podcast=0x7f09000d;
         public static final int ll=0x7f09000c;
         public static final int menu_about=0x7f09001e;
@@ -79,11 +78,12 @@ public final class R {
         public static final int menu_viewstations=0x7f090024;
         public static final int pb_progressbar=0x7f090012;
         public static final int rel_title=0x7f090013;
-        public static final int text=0x7f090002;
         public static final int text1=0x7f090003;
         public static final int text2=0x7f090004;
         public static final int text_footer=0x7f090006;
         public static final int text_subtitle=0x7f090005;
+        public static final int toast_image=0x7f090001;
+        public static final int toast_text=0x7f090002;
         public static final int tv_Title=0x7f090007;
         public static final int tv_podcastDescription=0x7f090011;
         public static final int tv_podcastDuration=0x7f09000f;
@@ -148,7 +148,6 @@ public final class R {
         public static final int dialog_nointernet_title=0x7f070022;
         public static final int download_listings_dialog_body=0x7f07002e;
         public static final int download_listings_dialog_title=0x7f07002d;
-        public static final int download_listings_toast=0x7f07002f;
         public static final int gettingstarted_text=0x7f07000a;
         public static final int gettingstarted_title=0x7f070008;
         public static final int gettingstarted_url=0x7f070009;
@@ -168,7 +167,9 @@ public final class R {
         public static final int schedules_viewstations=0x7f070028;
         public static final int search_hint=0x7f07000c;
         public static final int search_label=0x7f07000b;
+        public static final int toast_download_listings=0x7f07002f;
         public static final int toast_image_description=0x7f07002c;
+        public static final int toast_listings_outofdate=0x7f070030;
         public static final int url_bbcradio=0x7f070020;
     }
     public static final class xml {

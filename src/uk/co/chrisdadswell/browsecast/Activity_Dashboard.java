@@ -31,9 +31,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -157,14 +154,14 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     	View layout = inflater.inflate(R.layout.browsecast_toast,(ViewGroup) findViewById(R.id.custom_toast_layout_id));
 	
     	// set a message
-    	ImageView image = (ImageView) layout.findViewById(R.id.image);
+    	ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
     	image.setImageResource(R.drawable.browsecast);
-    	TextView text = (TextView) layout.findViewById(R.id.text);
+    	TextView text = (TextView) layout.findViewById(R.id.toast_text);
     	text.setText(toast_text);
 	 
     	// 	Toast...
     	Toast toast = new Toast(getApplicationContext());
-    	toast.setGravity(Gravity.BOTTOM, 0, 0);
+    	toast.setGravity(Gravity.BOTTOM, 0, 10);
     	toast.setDuration(Toast.LENGTH_LONG);
     	toast.setView(layout);
     	toast.show();
@@ -173,7 +170,6 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     // INITIALISATION
     public boolean Init() {
 		Log.d(APP_TAG, ACT_TAG + "METHOD: Init()");
-		TextView dashboard_subtitle = (TextView) findViewById(R.id.text_subtitle);
 
 		// CHECK IF XML HAS BEEN ALREADY DOWNLOADED
         if(!Func_FileIO.FileOrDirectoryExists(Constants.mainxml)) {
@@ -207,8 +203,8 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
         			}
         		}
         	}else{ // OUT OF DATE XML, ADVISE USER AN UPDATE IS AVAILABLE
-        		Log.d(APP_TAG, ACT_TAG + "INIT: XML is a day old, show the subtitle");
-        		downloadNewListingsDialog(this.getResources().getString(R.string.download_listings_dialog_title), this.getResources().getString(R.string.download_listings_dialog_body));        		
+        		Log.d(APP_TAG, ACT_TAG + "INIT: XML is a day old, show the toast");
+        		BrowseCastToast(this.getResources().getString(R.string.toast_listings_outofdate));
         		return true;
         	}
         }
@@ -216,7 +212,6 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 	}
 
     private void DownloadListings() {
-    	TextView dashboard_subtitle = (TextView) findViewById(R.id.text_subtitle);
     	String url = "http://www.bbc.co.uk/podcasts.xml";
 
     	DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
@@ -225,7 +220,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     	// in order for this if to run, you must use the android 3.2 to compile your app
     	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
     	    request.allowScanningByMediaScanner();
-    	    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+    	    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
     	}
     	request.setDestinationInExternalPublicDir(Constants.xmldir, "podcasts.xml");
     	
@@ -233,39 +228,9 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     	DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
     	manager.enqueue(request);
     	Log.d(APP_TAG, ACT_TAG + "RUN: Starting download of XML file ...");
-    	BrowseCastToast(this.getResources().getString(R.string.download_listings_toast));
+    	BrowseCastToast(this.getResources().getString(R.string.toast_download_listings));
     }
     
-	ArrayList<HashMap<String,String>> dash_list = new ArrayList<HashMap<String,String>>();
-	private void populateDashList() {
-		 Log.d(APP_TAG, ACT_TAG + "DASHBOARD: Adding options to dashboard");
-		 
-		 HashMap<String,String> temp = new HashMap<String,String>();
-		 temp.put("option", getString(R.string.dashboard_menu_bystation));
-		 temp.put("desc", getString(R.string.dashboard_menu_bystation_subtitle));
-		 dash_list.add(temp);
-		 
-		 HashMap<String,String> temp1 = new HashMap<String,String>();
-		 temp1.put("option","5Live Podcasts");
-		 temp1.put("desc", "5Live Podcasts Website");
-		 dash_list.add(temp1);
-		 
-		 HashMap<String,String> temp3 = new HashMap<String,String>();
-		 temp3.put("option","Radio Schedules");
-		 temp3.put("desc", "View BBC Radio scheduling information");
-		 dash_list.add(temp3);
-		 
-		 HashMap<String,String> temp4 = new HashMap<String,String>();
-		 temp4.put("option","Radio iPlayer by Station");
-		 temp4.put("desc", "View iPlayer content by Station (BBC Media Player and BBC iPlayer required)");
-		 dash_list.add(temp4);
-		 
-		 HashMap<String,String> temp5 = new HashMap<String,String>();
-		 temp5.put("option","Podcast Help and Assistance");
-		 temp5.put("desc", "What are Podcasts? What apps are good for Podcasting?");
-		 dash_list.add(temp5);
-	}
-	
 	@Override
 	protected void onListItemClick(ListView listView, View view, int position, long id) {
 		    super.onListItemClick(listView, view, position, id);
@@ -420,26 +385,36 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 	public boolean onQueryTextSubmit(String arg0) {
 		return false;
 	}
-	
-//	// get your custom_toast.xml ayout
-//	LayoutInflater inflater = getLayoutInflater();
-//
-//	View layout = inflater.inflate(R.layout.custom_toast,
-//	  (ViewGroup) findViewById(R.id.custom_toast_layout_id));
-//
-//	// set a dummy image
-//	ImageView image = (ImageView) layout.findViewById(R.id.image);
-//	image.setImageResource(R.drawable.ic_launcher);
-//
-//	// set a message
-//	TextView text = (TextView) layout.findViewById(R.id.text);
-//	text.setText("Button is clicked!");
-//
-//	// Toast...
-//	Toast toast = new Toast(getApplicationContext());
-//	toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-//	toast.setDuration(Toast.LENGTH_LONG);
-//	toast.setView(layout);
-//	toast.show();
     
+	ArrayList<HashMap<String,String>> dash_list = new ArrayList<HashMap<String,String>>();
+	private void populateDashList() {
+		 Log.d(APP_TAG, ACT_TAG + "DASHBOARD: Adding options to dashboard");
+		 
+		 HashMap<String,String> temp = new HashMap<String,String>();
+		 temp.put("option", getString(R.string.dashboard_menu_bystation));
+		 temp.put("desc", getString(R.string.dashboard_menu_bystation_subtitle));
+		 dash_list.add(temp);
+		 
+		 HashMap<String,String> temp1 = new HashMap<String,String>();
+		 temp1.put("option","5Live Podcasts");
+		 temp1.put("desc", "5Live Podcasts Website");
+		 dash_list.add(temp1);
+		 
+		 HashMap<String,String> temp3 = new HashMap<String,String>();
+		 temp3.put("option","Radio Schedules");
+		 temp3.put("desc", "View BBC Radio scheduling information");
+		 dash_list.add(temp3);
+		 
+		 HashMap<String,String> temp4 = new HashMap<String,String>();
+		 temp4.put("option","Radio iPlayer by Station");
+		 temp4.put("desc", "View iPlayer content by Station (BBC Media Player and BBC iPlayer required)");
+		 dash_list.add(temp4);
+		 
+		 HashMap<String,String> temp5 = new HashMap<String,String>();
+		 temp5.put("option","Podcast Help and Assistance");
+		 temp5.put("desc", "What are Podcasts? What apps are good for Podcasting?");
+		 dash_list.add(temp5);
+	}
+	
+	
 } // END OF ACTIVITY CLASS
