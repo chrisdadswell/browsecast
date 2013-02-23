@@ -57,12 +57,6 @@ public class Activity_PodcastView extends Activity {
     public void onStart() {
     	super.onStart();
     	Log.d(APP_TAG, ACT_TAG + "... OnStart...");
-    	Log.d(APP_TAG, ACT_TAG + "ONSTART: Detecting for PocketCasts");
-    	if(isPocketCastsInstalled()) {
-    		
-    	}else{
-		
-    	}
 	}
     
     @Override
@@ -199,14 +193,5 @@ public class Activity_PodcastView extends Activity {
             bmImage.setImageBitmap(result);
         }
     }
-
-	private boolean isPocketCastsInstalled() {
-        Func_FileIO.FileOrDirectoryExists(Constants.PocketCastsDir);
-        if(Func_FileIO.FileOrDirectoryExists(Constants.PocketCastsDir)) {
-        	return true;
-        }else{
-        	return false;
-        }
-	}
 
 }

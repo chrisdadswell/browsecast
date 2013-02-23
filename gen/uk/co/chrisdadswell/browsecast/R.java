@@ -146,6 +146,9 @@ public final class R {
         public static final int dashboard_twitter=0x7f07001a;
         public static final int dialog_nointernet_msg=0x7f070021;
         public static final int dialog_nointernet_title=0x7f070022;
+        public static final int download_listings_dialog_body=0x7f07002e;
+        public static final int download_listings_dialog_title=0x7f07002d;
+        public static final int download_listings_toast=0x7f07002f;
         public static final int gettingstarted_text=0x7f07000a;
         public static final int gettingstarted_title=0x7f070008;
         public static final int gettingstarted_url=0x7f070009;

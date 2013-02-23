@@ -29,7 +29,7 @@ public final class Constants {
 	
 	// DIRECTORIES
 	public static final String appdir = Environment.getExternalStorageDirectory() + "/browsecast";
-	public static final String xmldir = Environment.getExternalStorageDirectory() + "/browsecast/xml";
+	public static final String xmldir = "/browsecast/xml";
 	public static final String imagesdir = Environment.getExternalStorageDirectory() + "/browsecast/images";
 	
 	// FILES
@@ -41,9 +41,6 @@ public final class Constants {
 	public static final String urlBlog = "http://www.chrisdadswell.co.uk";
 	public static final String urlGooglePlus = "https://plus.google.com/103906208250029081417/posts";
 	public static final String urlBBCRadio = "http://www.bbc.co.uk/mobile/radio";
-
-	// LISTEN INSTALL DIRECTORY
-	public static final String PocketCastsDir = Environment.getExternalStorageDirectory() + "/PocketCasts";
 
 	// CONTEXT AND POPUP MENUS
 	public static final int MENU_PREFERENCES = Menu.FIRST +1; 

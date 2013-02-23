@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Context;
@@ -28,36 +29,55 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Activity_Dashboard extends ListActivity implements Runnable, SearchView.OnQueryTextListener, SearchView.OnCloseListener { 
+public class Activity_Dashboard extends ListActivity implements SearchView.OnQueryTextListener, SearchView.OnCloseListener { 
 	
 	final static String APP_TAG = "browsecast";
 	final static String ACT_TAG = "Dashboard: ";
 	final static Date todayDate = new Date();
 	static String todayDay = null;
 	static String fileDay = null;
-	private boolean listingDecision = false; 
 	static ArrayList<HashMap<String,String>> stationNameArrayList = new ArrayList<HashMap<String,String>>();
 	
 	@Override
     public void onStart() {
     	super.onStart();
-    	Log.d(APP_TAG, ACT_TAG + "... OnStart...");
+    	Log.d(APP_TAG, ACT_TAG + "... OnStart ...");
     }
 	
-     // CREATE
+	@Override
+    public void onPause() {
+    	super.onPause();
+    	Log.d(APP_TAG, ACT_TAG + "... OnPause ...");
+    }
+
+    @Override
+    public void onDestroy() {    	super.onDestroy();
+    	Log.d(APP_TAG, ACT_TAG + "... OnDestroy ...");
+    	clearDashList();
+    	Log.d(APP_TAG, ACT_TAG + "ONDESTROY: Clearing Dashlist");
+    }
+	
+	// CREATE
     @Override 
     public void onCreate(Bundle icicle) { 
     	 super.onCreate(icicle); 
@@ -72,9 +92,10 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
     	 SimpleAdapter dashAdapter = new SimpleAdapter(dashboard,dash_list,R.layout.dash_rows,
     			 new String[] {"option", "desc"},new int[] {R.id.text1, R.id.text2});
     	 setListAdapter(dashAdapter);
-     } // END OF ONCREATE
-	 
-    
+     } 
+    // END OF ONCREATE
+
+    // MENUS
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -105,14 +126,7 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 			return true;
 
 		case R.id.menu_refresh:
-			if(isInternetOn()) {
-				Log.d(APP_TAG, ACT_TAG + "INIT: We have internet, go get it!");
-				resetData();
-				Init();
-			}else{
-				Log.d(APP_TAG, ACT_TAG + "INIT: No internet, denied!");
-				finish();
-			}
+			downloadNewListingsDialog(this.getResources().getString(R.string.download_listings_dialog_title), this.getResources().getString(R.string.download_listings_dialog_body));
 			return true;
 			
 		case R.id.menu_blog:
@@ -137,7 +151,26 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 		}
 		return false;
 	}
-	    
+    
+    private void BrowseCastToast(String toast_text) {
+    	LayoutInflater inflater = getLayoutInflater();
+    	View layout = inflater.inflate(R.layout.browsecast_toast,(ViewGroup) findViewById(R.id.custom_toast_layout_id));
+	
+    	// set a message
+    	ImageView image = (ImageView) layout.findViewById(R.id.image);
+    	image.setImageResource(R.drawable.browsecast);
+    	TextView text = (TextView) layout.findViewById(R.id.text);
+    	text.setText(toast_text);
+	 
+    	// 	Toast...
+    	Toast toast = new Toast(getApplicationContext());
+    	toast.setGravity(Gravity.BOTTOM, 0, 0);
+    	toast.setDuration(Toast.LENGTH_LONG);
+    	toast.setView(layout);
+    	toast.show();
+    }
+    
+    // INITIALISATION
     public boolean Init() {
 		Log.d(APP_TAG, ACT_TAG + "METHOD: Init()");
 		TextView dashboard_subtitle = (TextView) findViewById(R.id.text_subtitle);
@@ -147,8 +180,7 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
         	Log.d(APP_TAG, ACT_TAG + "INIT: XML doesn't exist");
         	if(isInternetOn()) {
         		Log.d(APP_TAG, ACT_TAG + "INIT: Internet available, downloading file");
-        		Thread thread = new Thread(Activity_Dashboard.this);
-        		thread.start();
+        		DownloadListings();
         		return true;
         	}else{
         		Log.d(APP_TAG, ACT_TAG + "INIT: No internet, denied!");
@@ -167,8 +199,7 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
         			Log.d(APP_TAG, ACT_TAG + "INIT: XML exists, but is 0 bytes, attempt re-download if internet available");
         			if(isInternetOn()) {
         				Log.d(APP_TAG, ACT_TAG + "INIT: Internet available, downloading ...");
-        				Thread thread = new Thread(this);
-        				thread.start();
+        				DownloadListings();
         				return true;
         			}else{ // NO INTERNET, RAISE AN ALERT AND FORCE USER TO QUIT
         				Log.d(APP_TAG, ACT_TAG + "INIT: No internet, display no internet dialog and quit");
@@ -177,60 +208,34 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
         		}
         	}else{ // OUT OF DATE XML, ADVISE USER AN UPDATE IS AVAILABLE
         		Log.d(APP_TAG, ACT_TAG + "INIT: XML is a day old, show the subtitle");
-        		//downloadNewListingsDialog("Download or continue with current listings ?", "\nDo you wish to download new listings or continue with the current listings ?\n");        		
-        		if(isInternetOn()) {
-        			Log.d(APP_TAG, ACT_TAG + "INIT: Internet available, downloading ...");
-        			Thread thread = new Thread(this);
-        			thread.start();
-        			return true;
-        		}else{ // NO INTERNET, RAISE AN ALERT AND FORCE USER TO QUIT
-        			Log.d(APP_TAG, ACT_TAG + "INIT: No internet, display no internet dialog and quit");
-        			noInternetDialog("No internet connection", "A new Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");
-        		}
-        		//dashboard_subtitle.setText(R.string.dashboard_footer_outofdate);
-        		//dashboard_subtitle.setTextColor(getResources().getColor(R.color.dashboard_footer_outofdate));
-        		//dashboard_subtitle.invalidate();
+        		downloadNewListingsDialog(this.getResources().getString(R.string.download_listings_dialog_title), this.getResources().getString(R.string.download_listings_dialog_body));        		
         		return true;
         	}
         }
         return false;
 	}
 
-	public void run() {
-	boolean msgResult = false;
-	TextView dashboard_subtitle = (TextView) findViewById(R.id.text_subtitle);
-	Log.d(APP_TAG, ACT_TAG + "RUN: Starting download of XML file ...");
-	dashboard_subtitle.setText("Downloading Podcasts index, hold tight...");
-	dashboard_subtitle.invalidate();
-	msgResult = Func_Download.DownloadFile("http://www.bbc.co.uk/podcasts.xml", Constants.xmldir);
-	if(msgResult == true){
-		Log.d(APP_TAG, ACT_TAG + "RUN: Thread Successful");
-		MainXMLDownloadHandler .sendMessage(Message.obtain(MainXMLDownloadHandler , 1));
-	}else{
-		Log.d(APP_TAG, ACT_TAG + "RUN: Thread Unsuccessful");
-		MainXMLDownloadHandler .sendMessage(Message.obtain(MainXMLDownloadHandler , 0));
-	}
-	}
-
-	private Handler MainXMLDownloadHandler = new Handler() {
-    @Override
-    public void handleMessage(Message msg) {
-    	Log.d(APP_TAG, ACT_TAG + "HANDLER: The message is: " + msg);
+    private void DownloadListings() {
     	TextView dashboard_subtitle = (TextView) findViewById(R.id.text_subtitle);
-    	switch(msg.what) {
-    	case 0: // UNSUCCESSFUL
-    		Log.d(APP_TAG, ACT_TAG + "HANDLER: Download Unsuccessful");
-    		dashboard_subtitle.setText("Couldn't download Podcasts index file, try a refresh...");
-    		noInternetDialog("Boo! No Podcasts listings found", "A BBC Podcasts listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.\n");
-    		break;
-   	 	case 1: // SUCCESSFULL
-   	 		Log.d(APP_TAG, ACT_TAG + "HANDLER: Download successful");
-   	 		dashboard_subtitle.setText("");
-   	 		break;
+    	String url = "http://www.bbc.co.uk/podcasts.xml";
+
+    	DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+    	request.setDescription("BBC Podcast listings");
+    	request.setTitle("BBC Podcasts.xml");
+    	// in order for this if to run, you must use the android 3.2 to compile your app
+    	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+    	    request.allowScanningByMediaScanner();
+    	    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
     	}
+    	request.setDestinationInExternalPublicDir(Constants.xmldir, "podcasts.xml");
+    	
+    	// get download service and enqueue file
+    	DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+    	manager.enqueue(request);
+    	Log.d(APP_TAG, ACT_TAG + "RUN: Starting download of XML file ...");
+    	BrowseCastToast(this.getResources().getString(R.string.download_listings_toast));
     }
-	};
-	
+    
 	ArrayList<HashMap<String,String>> dash_list = new ArrayList<HashMap<String,String>>();
 	private void populateDashList() {
 		 Log.d(APP_TAG, ACT_TAG + "DASHBOARD: Adding options to dashboard");
@@ -350,14 +355,20 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
      	 .setPositiveButton("Download new listings", new DialogInterface.OnClickListener() { 
     		 public void onClick(DialogInterface dialog, int whichButton){
     			 Log.d(APP_TAG, ACT_TAG + "DOWNLOADNEWLISTINGSDIALOG: Download new file");
-    			 listingDecision = true;
+    			 if(isInternetOn()) {
+    				 Log.d(APP_TAG, ACT_TAG + "INIT: We have internet, go get it!");
+    				 resetData();
+    				 DownloadListings();
+    			 }else{
+         			Log.d(APP_TAG, ACT_TAG + "INIT: No internet, display no internet dialog and quit");
+         			noInternetDialog("No internet connection", "A new Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");
+    			 }
     		 }
      	 })
     		 
      	 .setNeutralButton("Use current listings", new DialogInterface.OnClickListener() { 
     		 public void onClick(DialogInterface dialog, int whichButton){
     			 Log.d(APP_TAG, ACT_TAG + "DOWNLOADNEWLISTINGSDIALOG: Resuming with current file");
-    			 listingDecision = false;
     			 dialog.dismiss();
     		 }
     	 });
@@ -397,14 +408,6 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 		Activity_ByStation.ARRAYLIST_STATUS = false;
 		Activity_ByStation.stationNameArrayList.clear();
 	}
-     
-    @Override
-    public void onDestroy() {
-    	super.onDestroy();
-    	Log.d(APP_TAG, ACT_TAG + "... OnDestroy ...");
-    	clearDashList();
-    	Log.d(APP_TAG, ACT_TAG + "ONDESTROY: Clearing Dashlist");
-    }
 
 	public boolean onClose() {
 		return false;
@@ -438,18 +441,5 @@ public class Activity_Dashboard extends ListActivity implements Runnable, Search
 //	toast.setDuration(Toast.LENGTH_LONG);
 //	toast.setView(layout);
 //	toast.show();
-
-	
-//	private boolean isAppInstalled(String uri) {
-//	    PackageManager pm = getPackageManager();
-//	    boolean installed = false;
-//	    try {
-//	       pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-//	       installed = true;
-//	    } catch (PackageManager.NameNotFoundException e) {
-//	       installed = false;
-//	    }
-//	    return installed;
-//	}
     
 } // END OF ACTIVITY CLASS
