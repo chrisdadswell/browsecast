@@ -30,7 +30,7 @@ public final class Constants {
 	// DIRECTORIES
 	public static final String appdir = Environment.getExternalStorageDirectory() + "/browsecast";
 	public static final String xmldir = "/browsecast/xml";
-	public static final String imagesdir = Environment.getExternalStorageDirectory() + "/browsecast/images";
+	public static final String imagesdir = "/browsecast/images";
 	
 	// FILES
 	public static final String mainxml = Environment.getExternalStorageDirectory()+ "/browsecast/xml/podcasts.xml";

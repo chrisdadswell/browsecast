@@ -18,7 +18,6 @@ package uk.co.chrisdadswell.browsecast;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.ListActivity;
@@ -53,7 +52,6 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 	final static Date todayDate = new Date();
 	static String todayDay = null;
 	static String fileDay = null;
-	//static ArrayList<HashMap<String,String>> stationNameArrayList = new ArrayList<HashMap<String,String>>();
 	
 	@Override
     public void onStart() {
@@ -161,7 +159,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 	 
     	// 	Toast...
     	Toast toast = new Toast(getApplicationContext());
-    	toast.setGravity(Gravity.BOTTOM, 0, 20);
+    	toast.setGravity(Gravity.BOTTOM, 0, 50);
     	toast.setDuration(Toast.LENGTH_LONG);
     	toast.setView(layout);
     	toast.show();

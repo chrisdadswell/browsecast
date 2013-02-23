@@ -19,6 +19,7 @@ import java.io.InputStream;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -27,12 +28,16 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,7 +70,7 @@ public class Activity_PodcastView extends Activity {
         setContentView(R.layout.podcastview);
         
         ImageView wPodcastImage = (ImageView) this.findViewById(R.id.imgview_podcast);
-		TextView wPodcastName = (TextView) this.findViewById(R.id.tv_podcastName);
+		TextView wPodcastFlavour = (TextView) this.findViewById(R.id.tv_podcastFlavour);
         TextView wPodcastDuration = (TextView) this.findViewById(R.id.tv_podcastDuration);
         TextView wPodcastDescription = (TextView) this.findViewById(R.id.tv_podcastDescription);
 
@@ -87,21 +92,41 @@ public class Activity_PodcastView extends Activity {
 				podcastName = selPodcast;
 				pcastUrl = podcastUrl.toString().replaceAll("http://", "pcast://");
 			}else{
-				Toast.makeText(Activity_PodcastView.this, "\n\nThere was a problem retrieving podcast information for this Podcast\n\n", Toast.LENGTH_LONG).show();
+				BrowseCastToast(this.getResources().getString(R.string.toast_problem_podcast));
 				finish();
 			}
 		}
-        
+		
         new DownloadImageTask((ImageView) findViewById(R.id.imgview_podcast))
         .execute(podcastImage);
         
 //        GoogleAdView adView = (GoogleAdView) findViewById(R.id.adview);
 //        adView.showAds(adSenseSpec);
         
-        wPodcastName.setText(podcastName);
-        wPodcastDuration.setText("Typical duration: " + podcastDuration + " mins");
+        wPodcastFlavour.setText("Flavour: " + podcastFlavour);
+        wPodcastDuration.setText("Typical duration: " + podcastDuration + " minutes");
         wPodcastDescription.setText(podcastDescription);
 	}
+
+    
+    private void BrowseCastToast(String toast_text) {
+    	LayoutInflater inflater = getLayoutInflater();
+    	View layout = inflater.inflate(R.layout.browsecast_toast,(ViewGroup) findViewById(R.id.custom_toast_layout_id));
+	
+    	// set a message
+    	ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
+    	image.setImageResource(R.drawable.browsecast);
+    	TextView text = (TextView) layout.findViewById(R.id.toast_text);
+    	text.setText(toast_text);
+	 
+    	// 	Toast...
+    	Toast toast = new Toast(getApplicationContext());
+    	toast.setGravity(Gravity.BOTTOM, 0, 30);
+    	toast.setDuration(Toast.LENGTH_LONG);
+    	toast.setView(layout);
+    	toast.show();
+    }
+
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -129,7 +154,7 @@ public class Activity_PodcastView extends Activity {
 			Intent sharetootherIntent = new Intent(Intent.ACTION_SEND);
 			sharetootherIntent.setType("text/plain");
 			sharetootherIntent.putExtra(Intent.EXTRA_TEXT, podcastUrl);
-			startActivity(Intent.createChooser(sharetootherIntent, "Share Podcast Subscription"));				
+			startActivity(Intent.createChooser(sharetootherIntent, "Share Podcast subscription"));				
 			return true;
 			
 		case R.id.menu_copytoclip:
@@ -138,7 +163,7 @@ public class Activity_PodcastView extends Activity {
 			// Creates a new text clip to put on the clipboard
 			ClipData clip = ClipData.newPlainText("Podcast URL",podcastUrl);
 			clipboard.setPrimaryClip(clip);
-			Toast.makeText(Activity_PodcastView.this, "\n\nPodcast subscription information copied to clipboard\n\n", Toast.LENGTH_SHORT).show();
+			BrowseCastToast(this.getResources().getString(R.string.toast_podcast_clipboard));
 			return true;
 			
 /*
@@ -160,6 +185,7 @@ public class Activity_PodcastView extends Activity {
     		podcastUrl = oPInfo[0].toString();
     	    podcastImage = oPInfo[1].toString();
     	    podcastDescription = oPInfo[2].toString();
+    	    podcastFlavour = oPInfo[3].toString();
     	    podcastDuration = oPInfo[4].toString();
     	    podcastPage = oPInfo[5].toString();
     	    podcastGenre = oPInfo[6].toString();
@@ -191,7 +217,28 @@ public class Activity_PodcastView extends Activity {
 
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
+            
         }
     }
 
+//    private void DownloadPodcastImage(String image_url) {
+//    	ImageView wPodcastImage = (ImageView) this.findViewById(R.id.imgview_podcast);
+//    	
+//    	DownloadManager.Request request = new DownloadManager.Request(Uri.parse(image_url));
+//    	request.setDescription("BBC Podcast image");
+//    	request.setTitle(podcastName + ".jpg");
+//    	// in order for this if to run, you must use the android 3.2 to compile your app
+//    	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+//    	    request.allowScanningByMediaScanner();
+//    	    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
+//    	}
+//    	request.setDestinationInExternalPublicDir(Constants.imagesdir, podcastName + ".jpg");
+//    	
+//    	// get download service and enqueue file
+//    	DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+//    	manager.enqueue(request);
+//    	Log.d(APP_TAG, ACT_TAG + "PODCASTVIEW: Starting download of Podcast image ...");
+//    	
+//    }
+    
 }

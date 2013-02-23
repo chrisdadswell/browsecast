@@ -56,28 +56,28 @@ public final class R {
         public static final int ic_share_twitter=0x7f020010;
     }
     public static final class id {
-        public static final int ProgressBar=0x7f090016;
+        public static final int ProgressBar=0x7f090017;
         public static final int RLayout=0x7f090008;
         public static final int custom_toast_layout_id=0x7f090000;
         public static final int imgview_podcast=0x7f09000d;
         public static final int ll=0x7f09000c;
-        public static final int menu_about=0x7f09001e;
-        public static final int menu_bbcradio_www=0x7f090018;
-        public static final int menu_blog=0x7f09001a;
-        public static final int menu_browsedates=0x7f090025;
-        public static final int menu_copytoclip=0x7f090022;
-        public static final int menu_gplus=0x7f09001d;
-        public static final int menu_iplayer_www=0x7f09001f;
-        public static final int menu_refresh=0x7f090019;
-        public static final int menu_rss=0x7f09001b;
-        public static final int menu_search=0x7f090017;
-        public static final int menu_setregion=0x7f090023;
-        public static final int menu_sharetoother=0x7f090021;
-        public static final int menu_sharetopodcastapp=0x7f090020;
-        public static final int menu_twitter=0x7f09001c;
-        public static final int menu_viewstations=0x7f090024;
-        public static final int pb_progressbar=0x7f090012;
-        public static final int rel_title=0x7f090013;
+        public static final int menu_about=0x7f09001f;
+        public static final int menu_bbcradio_www=0x7f090019;
+        public static final int menu_blog=0x7f09001b;
+        public static final int menu_browsedates=0x7f090026;
+        public static final int menu_copytoclip=0x7f090023;
+        public static final int menu_gplus=0x7f09001e;
+        public static final int menu_iplayer_www=0x7f090020;
+        public static final int menu_refresh=0x7f09001a;
+        public static final int menu_rss=0x7f09001c;
+        public static final int menu_search=0x7f090018;
+        public static final int menu_setregion=0x7f090024;
+        public static final int menu_sharetoother=0x7f090022;
+        public static final int menu_sharetopodcastapp=0x7f090021;
+        public static final int menu_twitter=0x7f09001d;
+        public static final int menu_viewstations=0x7f090025;
+        public static final int pb_progressbar=0x7f090013;
+        public static final int rel_title=0x7f090014;
         public static final int text1=0x7f090003;
         public static final int text2=0x7f090004;
         public static final int text_footer=0x7f090006;
@@ -87,12 +87,13 @@ public final class R {
         public static final int tv_Title=0x7f090007;
         public static final int tv_podcastDescription=0x7f090011;
         public static final int tv_podcastDuration=0x7f09000f;
-        public static final int tv_podcastName=0x7f09000e;
+        public static final int tv_podcastFlavour=0x7f09000e;
+        public static final int tv_podcastName=0x7f090012;
         public static final int txt_bar=0x7f09000b;
         public static final int txt_podcastname=0x7f090009;
-        public static final int txt_stationname=0x7f090015;
+        public static final int txt_stationname=0x7f090016;
         public static final int txt_totalminutes=0x7f09000a;
-        public static final int webview=0x7f090014;
+        public static final int webview=0x7f090015;
         public static final int widget_sv=0x7f090010;
     }
     public static final class layout {
@@ -156,6 +157,7 @@ public final class R {
         public static final int podcast_copytoclipboard=0x7f070016;
         public static final int podcast_description=0x7f070013;
         public static final int podcast_duration=0x7f070011;
+        public static final int podcast_flavour=0x7f070035;
         public static final int podcast_imageview=0x7f07002a;
         public static final int podcast_name=0x7f070010;
         public static final int podcast_shareto=0x7f070015;
@@ -171,7 +173,9 @@ public final class R {
         public static final int toast_image_description=0x7f070032;
         public static final int toast_listings_outofdate=0x7f07002f;
         public static final int toast_long_press_station=0x7f070031;
+        public static final int toast_podcast_clipboard=0x7f070034;
         public static final int toast_podcasts_calculation=0x7f070030;
+        public static final int toast_problem_podcast=0x7f070033;
         public static final int url_bbcradio=0x7f070020;
     }
     public static final class xml {

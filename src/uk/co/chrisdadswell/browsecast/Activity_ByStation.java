@@ -152,7 +152,6 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 
 	}	
 
-	
 	@Override
 	protected void onListItemClick(ListView listView, View view, int position, long id) {
 	    super.onListItemClick(listView, view, position, id);
@@ -215,7 +214,7 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 	 
     	// 	Toast...
     	Toast toast = new Toast(getApplicationContext());
-    	toast.setGravity(Gravity.BOTTOM, 0, 20);
+    	toast.setGravity(Gravity.BOTTOM, 0, 50);
     	toast.setDuration(Toast.LENGTH_LONG);
     	toast.setView(layout);
     	toast.show();
