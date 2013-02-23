@@ -53,7 +53,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 	final static Date todayDate = new Date();
 	static String todayDay = null;
 	static String fileDay = null;
-	static ArrayList<HashMap<String,String>> stationNameArrayList = new ArrayList<HashMap<String,String>>();
+	//static ArrayList<HashMap<String,String>> stationNameArrayList = new ArrayList<HashMap<String,String>>();
 	
 	@Override
     public void onStart() {
@@ -68,7 +68,8 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     }
 
     @Override
-    public void onDestroy() {    	super.onDestroy();
+    public void onDestroy() {    	
+    	super.onDestroy();
     	Log.d(APP_TAG, ACT_TAG + "... OnDestroy ...");
     	clearDashList();
     	Log.d(APP_TAG, ACT_TAG + "ONDESTROY: Clearing Dashlist");
@@ -86,8 +87,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     	 populateDashList();
 
          Log.d(APP_TAG, ACT_TAG + "ONCREATE: Showing Dashboard");
-    	 SimpleAdapter dashAdapter = new SimpleAdapter(dashboard,dash_list,R.layout.dash_rows,
-    			 new String[] {"option", "desc"},new int[] {R.id.text1, R.id.text2});
+    	 SimpleAdapter dashAdapter = new SimpleAdapter(dashboard,dash_list,R.layout.dash_rows, new String[] {"option", "desc"},new int[] {R.id.text1, R.id.text2});
     	 setListAdapter(dashAdapter);
      } 
     // END OF ONCREATE
@@ -161,7 +161,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 	 
     	// 	Toast...
     	Toast toast = new Toast(getApplicationContext());
-    	toast.setGravity(Gravity.BOTTOM, 0, 10);
+    	toast.setGravity(Gravity.BOTTOM, 0, 20);
     	toast.setDuration(Toast.LENGTH_LONG);
     	toast.setView(layout);
     	toast.show();
@@ -227,7 +227,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     	// get download service and enqueue file
     	DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
     	manager.enqueue(request);
-    	Log.d(APP_TAG, ACT_TAG + "RUN: Starting download of XML file ...");
+    	Log.d(APP_TAG, ACT_TAG + "RUN: Starting download of Podcasts.xml file ...");
     	BrowseCastToast(this.getResources().getString(R.string.toast_download_listings));
     }
     
@@ -322,8 +322,12 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     			 Log.d(APP_TAG, ACT_TAG + "DOWNLOADNEWLISTINGSDIALOG: Download new file");
     			 if(isInternetOn()) {
     				 Log.d(APP_TAG, ACT_TAG + "INIT: We have internet, go get it!");
-    				 resetData();
-    				 DownloadListings();
+    				 // delete current podcasts.xml
+    				 Func_FileIO.DeleteFile(Constants.mainxml);
+                    	 // clear stationnamearraylist
+                    	 resetData();
+                    	 // download new listings
+                    	 DownloadListings();
     			 }else{
          			Log.d(APP_TAG, ACT_TAG + "INIT: No internet, display no internet dialog and quit");
          			noInternetDialog("No internet connection", "A new Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");

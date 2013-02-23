@@ -27,13 +27,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnCreateContextMenuListener;
 import android.widget.Adapter;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
@@ -199,6 +203,24 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 		return false;
 	}
 	
+    private void BrowseCastToast(String toast_text) {
+    	LayoutInflater inflater = getLayoutInflater();
+    	View layout = inflater.inflate(R.layout.browsecast_toast,(ViewGroup) findViewById(R.id.custom_toast_layout_id));
+	
+    	// set a message
+    	ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
+    	image.setImageResource(R.drawable.browsecast);
+    	TextView text = (TextView) layout.findViewById(R.id.toast_text);
+    	text.setText(toast_text);
+	 
+    	// 	Toast...
+    	Toast toast = new Toast(getApplicationContext());
+    	toast.setGravity(Gravity.BOTTOM, 0, 20);
+    	toast.setDuration(Toast.LENGTH_LONG);
+    	toast.setView(layout);
+    	toast.show();
+    }
+	
 	@Override
 	public Object onRetainNonConfigurationInstance() {
 		cpTask.detach();
@@ -218,9 +240,7 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 	    @Override
 	    protected void onPreExecute() {
 	    	wPbar.setVisibility(View.VISIBLE);
-			
-	    	wTitle.setText("Reticulating splines, please wait...");
-	    	wTitle.invalidate();
+	    	BrowseCastToast(Activity_ByStation.this.getResources().getString(R.string.toast_podcasts_calculation));
 	    }
 	    
 		@Override
@@ -256,7 +276,7 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 			wPbar.setVisibility(View.GONE);
 			wTitle.setText(getString(R.string.bystation_subtitle));
 			wTitle.invalidate();
-			Toast.makeText(Activity_ByStation.this, "\n\nLong press a station for its mobile website\n\n", Toast.LENGTH_SHORT).show();
+			BrowseCastToast(Activity_ByStation.this.getResources().getString(R.string.toast_long_press_station));
 		}
 		
 		void detach() {

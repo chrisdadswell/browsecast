@@ -17,12 +17,14 @@
         android:id="@+id/toast_image"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp" 
+        android:contentDescription="@string/toast_image_description"/>
  
     <TextView
         android:id="@+id/toast_text"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
+        android:gravity="center"
         android:textColor="@color/toast_text" />
  
 </LinearLayout>

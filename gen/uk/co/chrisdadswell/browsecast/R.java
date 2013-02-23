@@ -146,8 +146,8 @@ public final class R {
         public static final int dashboard_twitter=0x7f07001a;
         public static final int dialog_nointernet_msg=0x7f070021;
         public static final int dialog_nointernet_title=0x7f070022;
-        public static final int download_listings_dialog_body=0x7f07002e;
-        public static final int download_listings_dialog_title=0x7f07002d;
+        public static final int download_listings_dialog_body=0x7f07002d;
+        public static final int download_listings_dialog_title=0x7f07002c;
         public static final int gettingstarted_text=0x7f07000a;
         public static final int gettingstarted_title=0x7f070008;
         public static final int gettingstarted_url=0x7f070009;
@@ -167,9 +167,11 @@ public final class R {
         public static final int schedules_viewstations=0x7f070028;
         public static final int search_hint=0x7f07000c;
         public static final int search_label=0x7f07000b;
-        public static final int toast_download_listings=0x7f07002f;
-        public static final int toast_image_description=0x7f07002c;
-        public static final int toast_listings_outofdate=0x7f070030;
+        public static final int toast_download_listings=0x7f07002e;
+        public static final int toast_image_description=0x7f070032;
+        public static final int toast_listings_outofdate=0x7f07002f;
+        public static final int toast_long_press_station=0x7f070031;
+        public static final int toast_podcasts_calculation=0x7f070030;
         public static final int url_bbcradio=0x7f070020;
     }
     public static final class xml {

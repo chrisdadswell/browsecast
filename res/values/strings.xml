@@ -69,10 +69,12 @@ Browse Podcasts by Station - Returns a list of BBC Radio stations.\n\n
 <string name="schedules_browsedates">Browse a different schedule date</string>
 <string name="podcast_imageview">Podcast Image</string>
 <string name="iplayer_bbc_www">BBC Radio iPlayer Website</string>
-<string name="toast_image_description">BrowseCast Logo</string>
 <string name="download_listings_dialog_title">Download or continue with current listings ?</string>
 <string name="download_listings_dialog_body">\nDo you wish to re-download listings or continue with the current listings ?\n</string>
 <string name="toast_download_listings">Downloading Podcast listings, hold tight</string>
 <string name="toast_listings_outofdate">New Podcast listings file available</string>
+<string name="toast_podcasts_calculation">Enumerating BBC Podcasts by Station, please wait</string>
+<string name="toast_long_press_station">Long press a Station to view its mobile website</string>
+<string name="toast_image_description">BrowseCast Logo</string>
 
 </resources>
