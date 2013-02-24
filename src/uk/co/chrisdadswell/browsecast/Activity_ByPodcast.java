@@ -52,6 +52,12 @@ public class Activity_ByPodcast extends ListActivity {
 	private static String selGenre = null;
 		
 	@Override
+	public void onBackPressed() {
+	    finish();//go back to the previous Activity
+	    overridePendingTransition(R.anim.fadeout, R.anim.push_right);   
+	}
+	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
     	Log.d(APP_TAG, ACT_TAG + "... OnCreate ...");
@@ -177,6 +183,7 @@ public class Activity_ByPodcast extends ListActivity {
 		    byPodcastView_intent.setClass(view.getContext(), Activity_PodcastView.class);
 		    byPodcastView_intent.putExtra("SelectedPodcast", podcastName);
 		    startActivity(byPodcastView_intent);
+		    //overridePendingTransition(R.anim.fadeout,R.anim.push_left);
 	    }else{
 	    	Toast.makeText(this, "No podcast(s) available at this time."  , Toast.LENGTH_SHORT).show();
 	    }

@@ -10,27 +10,27 @@
     <item android:id="@+id/menu_refresh"
           android:icon="@drawable/ic_action_refresh"
           android:title="@string/dashboard_refresh"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="ifRoom" />
     
     <item android:id="@+id/menu_blog"
           android:icon="@drawable/ic_action_www"
           android:title="@string/dashboard_blog"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="ifRoom" />
     
     <item android:id="@+id/menu_rss"
           android:icon="@drawable/ic_share_rss"
           android:title="@string/dashboard_rss"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="ifRoom" />
     
     <item android:id="@+id/menu_twitter"
           android:icon="@drawable/ic_share_twitter"
           android:title="@string/dashboard_twitter"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="ifRoom" />
     
     <item android:id="@+id/menu_gplus"
           android:icon="@drawable/ic_action_refresh"
           android:title="@string/dashboard_gplus"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="ifRoom" />
     
 	<item android:id="@+id/menu_about"
           android:icon="@drawable/ic_action_about"

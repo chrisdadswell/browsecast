@@ -48,6 +48,12 @@ public class Activity_iPlayer extends ListActivity {
 	private static String dayString = null;
 	private static String monthString = null;
 	
+	@Override
+	public void onBackPressed() {
+	    finish();//go back to the previous Activity
+	    overridePendingTransition(R.anim.fadeout, R.anim.push_right);   
+	}
+	
 	// LIFECYCLES
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

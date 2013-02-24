@@ -59,6 +59,12 @@ public class Activity_PodcastView extends Activity {
     public static String podcastGenre = null;
 	
 	@Override
+	public void onBackPressed() {
+	    finish();//go back to the previous Activity
+	    overridePendingTransition(R.anim.fadeout, R.anim.push_right);   
+	}
+    
+	@Override
     public void onStart() {
     	super.onStart();
     	Log.d(APP_TAG, ACT_TAG + "... OnStart...");

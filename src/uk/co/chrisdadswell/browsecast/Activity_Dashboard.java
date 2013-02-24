@@ -240,24 +240,24 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 		    if(id == 0) {
 		    	Intent intentStation = new Intent(Activity_Dashboard.this, Activity_ByStation.class);
 		    	Activity_Dashboard.this.startActivity(intentStation);
-				overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
+				overridePendingTransition(R.anim.fadeout,R.anim.push_left);
 		    }else if(id == 1){
 		    	Intent fivelive_intent = new Intent(Intent.ACTION_VIEW); 
 				fivelive_intent.setData(Uri.parse("http://www.bbc.co.uk/podcasts/5live.mp"));
 				startActivity(fivelive_intent);
-				overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
+				overridePendingTransition(R.anim.fadeout,R.anim.push_left);
 		    }else if(id == 2){
 		    	Intent intentSchedules = new Intent(Activity_Dashboard.this, Activity_Schedules.class);
 		    	Activity_Dashboard.this.startActivity(intentSchedules);
-		    	overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
+		    	overridePendingTransition(R.anim.fadeout,R.anim.push_left);
 		    }else if(id == 3){
 		    	Intent intentiPlayer = new Intent(Activity_Dashboard.this, Activity_iPlayer.class);
 		    	Activity_Dashboard.this.startActivity(intentiPlayer);
-		    	overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
+		    	overridePendingTransition(R.anim.fadeout,R.anim.push_left);
 		    }else if(id == 4){
 		    	Intent intentHelp = new Intent(Activity_Dashboard.this, Activity_Help.class);
 		    	Activity_Dashboard.this.startActivity(intentHelp);
-		    	overridePendingTransition(R.anim.fadeout,R.anim.push_down_out);
+		    	overridePendingTransition(R.anim.fadeout,R.anim.push_left);
 		    }
 	}
 	

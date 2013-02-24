@@ -56,6 +56,12 @@ public class Activity_SchedulesWebView extends Activity {
 	private static String midURL = "/programmes/schedules";
 	private static String endURL = ".mp";
 	
+	@Override
+	public void onBackPressed() {
+	    finish();//go back to the previous Activity
+	    overridePendingTransition(R.anim.fadeout, R.anim.push_right);   
+	}
+	
 	// LIFECYCLES
     @Override
 	public void onStart() {

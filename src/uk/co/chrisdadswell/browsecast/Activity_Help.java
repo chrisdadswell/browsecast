@@ -33,6 +33,12 @@ public class Activity_Help extends ListActivity  {
 	final static String APP_TAG = "browsecast";
 	final static String ACT_TAG = "Help: ";
 	
+	@Override
+	public void onBackPressed() {
+	    finish();//go back to the previous Activity
+	    overridePendingTransition(R.anim.fadeout, R.anim.push_right);   
+	}
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

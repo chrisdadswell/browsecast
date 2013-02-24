@@ -36,17 +36,20 @@ public class Activity_Schedules extends ListActivity {
 
 	final static String APP_TAG = "browsecast";
 	final static String ACT_TAG = "Activity_Schedules: ";
-
 	protected static final int DIALOG_REGION = 0;
-	
 	public static String selectedFrequency = null;
 	public static String selectedRegion = null;
 	public static String selectedPeriod = null;
 	public static String selectedStation = null;
 	public static String stationShortName = null;
 	public static String scheduleURL = null;
-	
 	private static final String PREFS = "preferences"; //  Name of the file -.xml
+	
+	@Override
+	public void onBackPressed() {
+	    finish();//go back to the previous Activity
+	    overridePendingTransition(R.anim.fadeout, R.anim.push_right);   
+	}
 	
 	// LIFECYCLES
 	@Override
