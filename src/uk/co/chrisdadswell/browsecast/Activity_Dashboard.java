@@ -52,6 +52,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 	final static Date todayDate = new Date();
 	static String todayDay = null;
 	static String fileDay = null;
+	private MenuItem refresh;
 	
 	@Override
     public void onStart() {
@@ -96,6 +97,8 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dashboard, menu);
 
+        refresh = menu.findItem(R.id.menu_refresh);
+        
         // Get the SearchView and set the searchable configuration
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
@@ -122,6 +125,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 
 		case R.id.menu_refresh:
 			downloadNewListingsDialog(this.getResources().getString(R.string.download_listings_dialog_title), this.getResources().getString(R.string.download_listings_dialog_body));
+			refresh.setActionView(R.layout.actionbar_indeterminate_progress);
 			return true;
 			
 		case R.id.menu_blog:
@@ -227,6 +231,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     	manager.enqueue(request);
     	Log.d(APP_TAG, ACT_TAG + "RUN: Starting download of Podcasts.xml file ...");
     	BrowseCastToast(this.getResources().getString(R.string.toast_download_listings));
+    	refresh.setActionView(null);
     }
     
 	@Override
@@ -322,10 +327,10 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     				 Log.d(APP_TAG, ACT_TAG + "INIT: We have internet, go get it!");
     				 // delete current podcasts.xml
     				 Func_FileIO.DeleteFile(Constants.mainxml);
-                    	 // clear stationnamearraylist
-                    	 resetData();
-                    	 // download new listings
-                    	 DownloadListings();
+    				 // clear stationnamearraylist
+    				 resetData();
+    				 // download new listings
+    				 DownloadListings();
     			 }else{
          			Log.d(APP_TAG, ACT_TAG + "INIT: No internet, display no internet dialog and quit");
          			noInternetDialog("No internet connection", "A new Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.");

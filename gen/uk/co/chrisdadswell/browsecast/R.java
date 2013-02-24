@@ -38,22 +38,23 @@ public final class R {
     }
     public static final class drawable {
         public static final int browsecast=0x7f020000;
-        public static final int ic_action_about=0x7f020001;
-        public static final int ic_action_back=0x7f020002;
-        public static final int ic_action_copy=0x7f020003;
-        public static final int ic_action_help=0x7f020004;
-        public static final int ic_action_overflow=0x7f020005;
-        public static final int ic_action_podcast=0x7f020006;
-        public static final int ic_action_podcastapp=0x7f020007;
-        public static final int ic_action_refresh=0x7f020008;
-        public static final int ic_action_schedules=0x7f020009;
-        public static final int ic_action_search=0x7f02000a;
-        public static final int ic_action_setregion=0x7f02000b;
-        public static final int ic_action_shareto=0x7f02000c;
-        public static final int ic_action_www=0x7f02000d;
-        public static final int ic_alert_thumbsdown=0x7f02000e;
-        public static final int ic_share_rss=0x7f02000f;
-        public static final int ic_share_twitter=0x7f020010;
+        public static final int browsecast_background=0x7f020001;
+        public static final int ic_action_about=0x7f020002;
+        public static final int ic_action_back=0x7f020003;
+        public static final int ic_action_copy=0x7f020004;
+        public static final int ic_action_help=0x7f020005;
+        public static final int ic_action_overflow=0x7f020006;
+        public static final int ic_action_podcast=0x7f020007;
+        public static final int ic_action_podcastapp=0x7f020008;
+        public static final int ic_action_refresh=0x7f020009;
+        public static final int ic_action_schedules=0x7f02000a;
+        public static final int ic_action_search=0x7f02000b;
+        public static final int ic_action_setregion=0x7f02000c;
+        public static final int ic_action_shareto=0x7f02000d;
+        public static final int ic_action_www=0x7f02000e;
+        public static final int ic_alert_thumbsdown=0x7f02000f;
+        public static final int ic_share_rss=0x7f020010;
+        public static final int ic_share_twitter=0x7f020011;
     }
     public static final class id {
         public static final int ProgressBar=0x7f090017;
@@ -98,18 +99,19 @@ public final class R {
     }
     public static final class layout {
         public static final int about=0x7f030000;
-        public static final int browsecast_toast=0x7f030001;
-        public static final int dash_rows=0x7f030002;
-        public static final int dashboard=0x7f030003;
-        public static final int getstarted=0x7f030004;
-        public static final int help=0x7f030005;
-        public static final int iplayer=0x7f030006;
-        public static final int lists=0x7f030007;
-        public static final int podcast_rows=0x7f030008;
-        public static final int podcastview=0x7f030009;
-        public static final int schedules=0x7f03000a;
-        public static final int station_rows=0x7f03000b;
-        public static final int stations=0x7f03000c;
+        public static final int actionbar_indeterminate_progress=0x7f030001;
+        public static final int browsecast_toast=0x7f030002;
+        public static final int dash_rows=0x7f030003;
+        public static final int dashboard=0x7f030004;
+        public static final int getstarted=0x7f030005;
+        public static final int help=0x7f030006;
+        public static final int iplayer=0x7f030007;
+        public static final int lists=0x7f030008;
+        public static final int podcast_rows=0x7f030009;
+        public static final int podcastview=0x7f03000a;
+        public static final int schedules=0x7f03000b;
+        public static final int station_rows=0x7f03000c;
+        public static final int stations=0x7f03000d;
     }
     public static final class menu {
         public static final int bypodcast=0x7f080000;
