@@ -11,8 +11,11 @@ public final class R {
     public static final class anim {
         public static final int fadein=0x7f040000;
         public static final int fadeout=0x7f040001;
-        public static final int push_left=0x7f040002;
-        public static final int push_right=0x7f040003;
+        public static final int push_back=0x7f040002;
+        public static final int push_down=0x7f040003;
+        public static final int push_left=0x7f040004;
+        public static final int push_right=0x7f040005;
+        public static final int push_up=0x7f040006;
     }
     public static final class attr {
     }
@@ -175,6 +178,9 @@ public final class R {
         public static final int toast_image_description=0x7f070032;
         public static final int toast_listings_outofdate=0x7f07002f;
         public static final int toast_long_press_station=0x7f070031;
+        public static final int toast_no_podcasts=0x7f070037;
+        public static final int toast_no_podcasts_info=0x7f070036;
+        public static final int toast_no_podcasts_inlist=0x7f070038;
         public static final int toast_podcast_clipboard=0x7f070034;
         public static final int toast_podcasts_calculation=0x7f070030;
         public static final int toast_problem_podcast=0x7f070033;

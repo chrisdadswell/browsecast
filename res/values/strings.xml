@@ -79,5 +79,8 @@ Browse Podcasts by Station - Returns a list of BBC Radio stations.\n\n
 <string name="toast_problem_podcast">There was a problem retrieving Podcast information</string>
 <string name="toast_podcast_clipboard">Podcast subscription information copied to clipboard</string>
 <string name="podcast_flavour">Podcast flavour</string>
+<string name="toast_no_podcasts_info">There is no podcasts information available at this time</string>
+<string name="toast_no_podcasts">No podcasts found from your search of </string>
+<string name="toast_no_podcasts_inlist">No podcast to view, click back and search again</string>
 
 </resources>

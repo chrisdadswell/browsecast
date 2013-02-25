@@ -55,6 +55,12 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 	private MenuItem refresh;
 	
 	@Override
+	public void onBackPressed() {
+	    finish();//go back to the previous Activity
+	    overridePendingTransition(R.anim.fadeout, R.anim.push_down);   
+	}
+	
+	@Override
     public void onStart() {
     	super.onStart();
     	Log.d(APP_TAG, ACT_TAG + "... OnStart ...");

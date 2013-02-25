@@ -53,6 +53,7 @@ public class Activity_iPlayer extends ListActivity {
 	    finish();//go back to the previous Activity
 	    overridePendingTransition(R.anim.fadeout, R.anim.push_right);   
 	}
+
 	
 	// LIFECYCLES
 	@Override

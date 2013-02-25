@@ -23,13 +23,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,7 +67,7 @@ public class Activity_ByPodcast extends ListActivity {
     	Log.d(APP_TAG, ACT_TAG + "... OnCreate ...");
 		setContentView(R.layout.lists);
 	    
-//		 Set NAVIGATION up	 
+		// Set NAVIGATION up	 
 		ActionBar actionBar = getActionBar();
   	 	actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -79,10 +83,8 @@ public class Activity_ByPodcast extends ListActivity {
 	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 	      strSearch = intent.getStringExtra(SearchManager.QUERY);
 	    }
-
-		// INIT WIDGETS
-		TextView wTitle = (TextView) findViewById(R.id.tv_Title);
-		wTitle.setText("Select a Podcast to view details");
+	    
+	    TextView wTitle = (TextView) findViewById(R.id.tv_Title);
 		
 // STATION		
 		if(selStation !=null) {
@@ -104,34 +106,17 @@ public class Activity_ByPodcast extends ListActivity {
 			int podCount = final_podcasts.length;
 			
 			if(temp_podcasts.contains("No Podcasts Available")) {
+				BrowseCastToast(this.getResources().getString(R.string.toast_no_podcasts_info));
 				podCount = 0;
 				String[] no_podcasts = {""};
 				setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, no_podcasts));
 			}else{
+				// INIT WIDGETS
+				wTitle.setText("Select a Podcast to view details");
 				setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, final_podcasts));			
 			}
 			wTitle.setSelected(true);
 			
-// GENRE				
-		}else if(selGenre !=null) {
-			Singleton.getInstance().setgSelStation("");
-			Singleton.getInstance().setgSelGenre(selGenre);
-			
-			// RETRIEVE AND PREPARE ARRAY FOR LISTVIEW
-			String[] arr_podcasts = new String[]{Xml_MainParser.ByType(3)};	
-			String temp_podcasts = Func_Strings.arrayToString(arr_podcasts, "#");
-			String[] final_podcasts = temp_podcasts.split("#");
-			int podGCount = final_podcasts.length;
-
-			if(temp_podcasts.contains("No Podcasts Available")) {
-				podGCount = 0;
-				String[] no_podcasts = { "" };
-				setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, no_podcasts));
-			}else{
-				wTitle.setText(selGenre);
-				setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, final_podcasts));			
-			}
-							
 // SEARCH			
 		}else if(strSearch !=null) {
 			Singleton.getInstance().setgSelStation("");
@@ -144,11 +129,12 @@ public class Activity_ByPodcast extends ListActivity {
 			int podSCount = final_podcasts.length;
 			
 			if(temp_podcasts.contains("No Podcasts Available")) {
+				BrowseCastToast(this.getResources().getString(R.string.toast_no_podcasts) + " - '" + strSearch + "'");
 				podSCount = 0;
 				String[] no_podcasts = {""};
 				setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, no_podcasts));
 			}else{
-				wTitle.setText("Your search for " + strSearch + " returned " + podSCount + " Podcast(s)");
+				wTitle.setText("Your search for " + strSearch + " returned " + podSCount + " podcast(s)");
 				setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, final_podcasts));
 			}
 		} 
@@ -160,7 +146,6 @@ public class Activity_ByPodcast extends ListActivity {
 				menu.add(0, Constants.CONTEXT_PODCAST, 0, "Retrieve Podcast");
 			}
 		});
-		
 		getListView().setTextFilterEnabled(true);
 		getListView().setSmoothScrollbarEnabled(true);
 		getListView().setFadingEdgeLength(60);
@@ -183,9 +168,9 @@ public class Activity_ByPodcast extends ListActivity {
 		    byPodcastView_intent.setClass(view.getContext(), Activity_PodcastView.class);
 		    byPodcastView_intent.putExtra("SelectedPodcast", podcastName);
 		    startActivity(byPodcastView_intent);
-		    //overridePendingTransition(R.anim.fadeout,R.anim.push_left);
+		    overridePendingTransition(R.anim.fadeout,R.anim.push_left);
 	    }else{
-	    	Toast.makeText(this, "No podcast(s) available at this time."  , Toast.LENGTH_SHORT).show();
+	    	BrowseCastToast(this.getResources().getString(R.string.toast_no_podcasts_inlist));
 	    }
 	}
 	
@@ -203,6 +188,7 @@ public class Activity_ByPodcast extends ListActivity {
             Intent intent = new Intent(this, Activity_ByStation.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            overridePendingTransition(R.anim.fadeout,R.anim.push_left);
             return true;
 			}
 		return false;
@@ -219,6 +205,7 @@ public class Activity_ByPodcast extends ListActivity {
 				Intent myIntent = null; 
 			    myIntent = new Intent("android.intent.action.VIEW", Uri.parse(podcastUrl)); 
 			    startActivity(myIntent);
+			    overridePendingTransition(R.anim.fadeout,R.anim.push_left);
 			    }
 			break;
 		default:
@@ -226,6 +213,25 @@ public class Activity_ByPodcast extends ListActivity {
 		}
 		return true;
 	}
+	
+    private void BrowseCastToast(String toast_text) {
+    	LayoutInflater inflater = getLayoutInflater();
+    	View layout = inflater.inflate(R.layout.browsecast_toast,(ViewGroup) findViewById(R.id.custom_toast_layout_id));
+	
+    	// set a message
+    	ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
+    	image.setImageResource(R.drawable.browsecast);
+    	TextView text = (TextView) layout.findViewById(R.id.toast_text);
+    	text.setText(toast_text);
+	 
+    	// 	Toast...
+    	Toast toast = new Toast(getApplicationContext());
+    	toast.setGravity(Gravity.BOTTOM, 0, 50);
+    	toast.setDuration(Toast.LENGTH_LONG);
+    	toast.setView(layout);
+    	toast.show();
+    }
+
 			
     public void GetPodcastValues(String podcastToGet){
     	Log.d(APP_TAG, ACT_TAG + "GETPODCASTVALUES: podcastToGet = " + podcastToGet);

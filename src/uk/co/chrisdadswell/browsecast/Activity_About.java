@@ -27,7 +27,8 @@ public class Activity_About extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-		Window w = getWindow();
+
+        Window w = getWindow();
 		w.requestFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.about);
 		w.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON,

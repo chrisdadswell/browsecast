@@ -30,6 +30,7 @@ public class Xml_MainDataset {
 	
 	// CREATE LINKED HASHMAP TO HOLD PODCAST NAME AND URL
 	public static LinkedHashMap <String,String> networkInfoMap = new LinkedHashMap <String, String>();
+	@SuppressWarnings("rawtypes")
 	public static LinkedHashMultimap lhmmPInfo = LinkedHashMultimap.create();
 	
 	// VARIABLES
