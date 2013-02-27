@@ -173,7 +173,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 	
     	// set a message
     	ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
-    	image.setImageResource(R.drawable.browsecast);
+    	image.setImageResource(R.drawable.browsecast_toast);
     	TextView text = (TextView) layout.findViewById(R.id.toast_text);
     	text.setText(toast_text);
 	 
