@@ -115,6 +115,7 @@ SearchView.OnQueryTextListener, SearchView.OnCloseListener
 //		 Set NAVIGATION up	 
 		ActionBar actionBar = getActionBar();
  	 	actionBar.setDisplayHomeAsUpEnabled(true);
+ 	 	
 	  	
 	  	// SETUP VIEW
 	  	final ProgressBar wProgressBar = (ProgressBar) findViewById(R.id.ProgressBar);

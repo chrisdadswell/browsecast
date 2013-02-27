@@ -7,8 +7,8 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 
 <ImageView
     android:id="@+id/imgview_podcast"
-    android:layout_width="140dp"
-    android:layout_height="140dp"
+    android:layout_width="220dp"
+    android:layout_height="220dp"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="10dp"
     android:clickable="true"
@@ -17,28 +17,28 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     android:src="@android:drawable/ic_menu_gallery" />
     
 <TextView
-    android:id="@+id/tv_podcastName"
-	android:text="@string/podcast_name"
-	android:textSize="26dip"
+    android:id="@+id/tv_podcastFlavour"
+	android:text="@string/podcast_flavour"
+	android:textSize="26sp"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:layout_below="@+id/imgview_podcast"
     android:background="#00000000"
-    android:padding="5dip"
+    android:padding="10dip"
     android:textColor="#ffffff"
     android:textStyle="bold">
 </TextView>
 
 <TextView
 	android:id="@+id/tv_podcastDuration"	
-	android:layout_below="@+id/tv_podcastName"
+	android:layout_below="@+id/tv_podcastFlavour"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:text="@string/podcast_duration"
 	android:textColor="#ffffff"
-	android:textSize="18dip"
-	android:padding="5dip">
+	android:textSize="26sp"
+	android:padding="10dip">
 </TextView>
 
 <ScrollView
@@ -54,7 +54,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     android:padding="10dip"
     android:text="@string/podcast_description"
     android:textColor="#ffffff"
-    android:textSize="18dip">
+    android:textSize="26sp">
 </TextView>
 </ScrollView>
 </RelativeLayout>

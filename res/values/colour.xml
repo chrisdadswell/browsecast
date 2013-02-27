@@ -15,11 +15,12 @@
 <color name="dashboard_row_subtitle">#00CCFF</color>
 
 <color name="station_row_title">#ffffff</color>
-<color name="station_row_count">#1EA8CC</color>
+<color name="station_row_count">#00CCFF</color>
 
 <color name="podcast_row_title">#ffffff</color>
 <color name="podcast_row_count">#1EA8CC</color>
 <color name="toast_background">#000000</color>
 <color name="toast_text">#FFFFFF</color>
+<color name="actionbar_underline">#00CCFF</color>
 
 </resources>

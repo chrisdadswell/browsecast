@@ -5,17 +5,19 @@
   	android:layout_height="wrap_content"
   	>
   
-<TextView android:text="Station Name"       
-android:textSize="20sp"         
-android:textStyle="bold" 
-android:layout_width="fill_parent"         
-android:layout_height="50dip"
-android:gravity="center|left"
-android:padding="10dip"
-android:scrollHorizontally="true" 
-android:textColor="@color/station_row_title" 
-android:background="#00000000" 
-android:id="@+id/txt_stationname"/>
+<TextView
+    android:id="@+id/txt_stationname"
+    android:layout_width="fill_parent"
+    android:layout_height="50dip"
+    android:background="#00000000"
+    android:gravity="center|left"
+    android:padding="10dip"
+    android:scrollHorizontally="true"
+    android:text="Station Name"
+    android:textColor="@color/station_row_title"
+    android:textSize="22sp"
+    android:textStyle="bold"
+    android:typeface="sans" />
 	
 <TextView android:layout_width="fill_parent" 
 android:gravity="right"

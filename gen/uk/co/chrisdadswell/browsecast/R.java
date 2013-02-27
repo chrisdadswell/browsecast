@@ -20,6 +20,7 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int actionbar_underline=0x7f060012;
         public static final int dashboard_background=0x7f060006;
         public static final int dashboard_footer_outofdate=0x7f060009;
         public static final int dashboard_footer_uptodate=0x7f060008;
@@ -45,19 +46,20 @@ public final class R {
         public static final int ic_action_about=0x7f020002;
         public static final int ic_action_back=0x7f020003;
         public static final int ic_action_copy=0x7f020004;
-        public static final int ic_action_help=0x7f020005;
-        public static final int ic_action_overflow=0x7f020006;
-        public static final int ic_action_podcast=0x7f020007;
-        public static final int ic_action_podcastapp=0x7f020008;
-        public static final int ic_action_refresh=0x7f020009;
-        public static final int ic_action_schedules=0x7f02000a;
-        public static final int ic_action_search=0x7f02000b;
-        public static final int ic_action_setregion=0x7f02000c;
-        public static final int ic_action_shareto=0x7f02000d;
-        public static final int ic_action_www=0x7f02000e;
-        public static final int ic_alert_thumbsdown=0x7f02000f;
-        public static final int ic_share_rss=0x7f020010;
-        public static final int ic_share_twitter=0x7f020011;
+        public static final int ic_action_gplus=0x7f020005;
+        public static final int ic_action_help=0x7f020006;
+        public static final int ic_action_overflow=0x7f020007;
+        public static final int ic_action_podcast=0x7f020008;
+        public static final int ic_action_podcastapp=0x7f020009;
+        public static final int ic_action_refresh=0x7f02000a;
+        public static final int ic_action_schedules=0x7f02000b;
+        public static final int ic_action_search=0x7f02000c;
+        public static final int ic_action_setregion=0x7f02000d;
+        public static final int ic_action_shareto=0x7f02000e;
+        public static final int ic_action_www=0x7f02000f;
+        public static final int ic_alert_thumbsdown=0x7f020010;
+        public static final int ic_share_rss=0x7f020011;
+        public static final int ic_share_twitter=0x7f020012;
     }
     public static final class id {
         public static final int ProgressBar=0x7f090017;

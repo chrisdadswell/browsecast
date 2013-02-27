@@ -18,6 +18,8 @@ package uk.co.chrisdadswell.browsecast;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.ListActivity;
@@ -25,6 +27,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -102,6 +105,13 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dashboard, menu);
+
+        // Set NAVIGATION up	 
+		ActionBar actionBar = getActionBar();
+	 	actionBar.setDisplayHomeAsUpEnabled(false);
+	 	//actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.));
+	 	actionBar.setStackedBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_underline)));
+
 
         refresh = menu.findItem(R.id.menu_refresh);
         
@@ -239,6 +249,36 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     	BrowseCastToast(this.getResources().getString(R.string.toast_download_listings));
     	refresh.setActionView(null);
     }
+
+    ArrayList<HashMap<String,String>> dash_list = new ArrayList<HashMap<String,String>>();
+	private void populateDashList() {
+		 Log.d(APP_TAG, ACT_TAG + "DASHBOARD: Adding options to dashboard");
+		 
+		 HashMap<String,String> temp = new HashMap<String,String>();
+		 temp.put("option", getString(R.string.dashboard_menu_bystation));
+		 temp.put("desc", getString(R.string.dashboard_menu_bystation_subtitle));
+		 dash_list.add(temp);
+		 
+		 HashMap<String,String> temp1 = new HashMap<String,String>();
+		 temp1.put("option","5Live Podcasts");
+		 temp1.put("desc", "5Live Podcasts Website");
+		 dash_list.add(temp1);
+		 
+		 HashMap<String,String> temp3 = new HashMap<String,String>();
+		 temp3.put("option","Radio Schedules");
+		 temp3.put("desc", "View BBC Radio scheduling information");
+		 dash_list.add(temp3);
+		 
+		 HashMap<String,String> temp4 = new HashMap<String,String>();
+		 temp4.put("option","Radio iPlayer by Station");
+		 temp4.put("desc", "View iPlayer content by Station (BBC Media Player and BBC iPlayer required)");
+		 dash_list.add(temp4);
+		 
+//		 HashMap<String,String> temp5 = new HashMap<String,String>();
+//		 temp5.put("option","Podcast Help and Assistance");
+//		 temp5.put("desc", "What are Podcasts? What apps are good for Podcasting?");
+//		 dash_list.add(temp5);
+	}                                                      
     
 	@Override
 	protected void onListItemClick(ListView listView, View view, int position, long id) {
@@ -399,35 +439,4 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
 		return false;
 	}
     
-	ArrayList<HashMap<String,String>> dash_list = new ArrayList<HashMap<String,String>>();
-	private void populateDashList() {
-		 Log.d(APP_TAG, ACT_TAG + "DASHBOARD: Adding options to dashboard");
-		 
-		 HashMap<String,String> temp = new HashMap<String,String>();
-		 temp.put("option", getString(R.string.dashboard_menu_bystation));
-		 temp.put("desc", getString(R.string.dashboard_menu_bystation_subtitle));
-		 dash_list.add(temp);
-		 
-		 HashMap<String,String> temp1 = new HashMap<String,String>();
-		 temp1.put("option","5Live Podcasts");
-		 temp1.put("desc", "5Live Podcasts Website");
-		 dash_list.add(temp1);
-		 
-		 HashMap<String,String> temp3 = new HashMap<String,String>();
-		 temp3.put("option","Radio Schedules");
-		 temp3.put("desc", "View BBC Radio scheduling information");
-		 dash_list.add(temp3);
-		 
-		 HashMap<String,String> temp4 = new HashMap<String,String>();
-		 temp4.put("option","Radio iPlayer by Station");
-		 temp4.put("desc", "View iPlayer content by Station (BBC Media Player and BBC iPlayer required)");
-		 dash_list.add(temp4);
-		 
-		 HashMap<String,String> temp5 = new HashMap<String,String>();
-		 temp5.put("option","Podcast Help and Assistance");
-		 temp5.put("desc", "What are Podcasts? What apps are good for Podcasting?");
-		 dash_list.add(temp5);
-	}
-	
-	
 } // END OF ACTIVITY CLASS
