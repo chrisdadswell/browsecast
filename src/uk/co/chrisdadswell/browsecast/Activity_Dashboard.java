@@ -247,7 +247,7 @@ public class Activity_Dashboard extends ListActivity implements SearchView.OnQue
     	manager.enqueue(request);
     	Log.d(APP_TAG, ACT_TAG + "RUN: Starting download of Podcasts.xml file ...");
     	BrowseCastToast(this.getResources().getString(R.string.toast_download_listings));
-    	refresh.setActionView(null);
+    	//refresh.setActionView(null);
     }
 
     ArrayList<HashMap<String,String>> dash_list = new ArrayList<HashMap<String,String>>();
