@@ -7,38 +7,39 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 
 <ImageView
     android:id="@+id/imgview_podcast"
-    android:layout_width="220dp"
-    android:layout_height="220dp"
+    android:layout_width="260dp"
+    android:layout_height="260dp"
     android:layout_centerHorizontal="true"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="30dp"
     android:clickable="true"
     android:contentDescription="@string/podcast_imageview"
-    android:padding="2dp"
     android:src="@android:drawable/ic_menu_gallery" />
     
 <TextView
     android:id="@+id/tv_podcastFlavour"
-	android:text="@string/podcast_flavour"
-	android:textSize="26sp"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
     android:layout_below="@+id/imgview_podcast"
+    android:layout_marginTop="10dp"
     android:background="#00000000"
     android:padding="10dip"
+    android:text="@string/podcast_flavour"
     android:textColor="#ffffff"
-    android:textStyle="bold">
+    android:textSize="20sp"
+    android:textStyle="bold" >
+
 </TextView>
 
 <TextView
-	android:id="@+id/tv_podcastDuration"	
-	android:layout_below="@+id/tv_podcastFlavour"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="@string/podcast_duration"
-	android:textColor="#ffffff"
-	android:textSize="26sp"
-	android:padding="10dip">
+    android:id="@+id/tv_podcastDuration"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/tv_podcastFlavour"
+    android:padding="10dip"
+    android:text="@string/podcast_duration"
+    android:textColor="#ffffff"
+    android:textSize="20sp" >
+
 </TextView>
 
 <ScrollView

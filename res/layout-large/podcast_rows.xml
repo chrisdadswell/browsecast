@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	>
+  
+<TextView
+    android:id="@+id/txt_podcastname"
+    android:layout_width="fill_parent"
+    android:layout_height="50dip"
+    android:background="#00000000"
+    android:gravity="center|left"
+    android:padding="10dip"
+    android:scrollHorizontally="true"
+    android:text="Podcast Name"
+    android:textColor="@color/podcast_row_title"
+    android:textSize="25sp"
+    android:textStyle="bold" />
+	
+<TextView
+    android:id="@+id/txt_totalminutes"
+    android:layout_width="fill_parent"
+    android:layout_height="25dip"
+    android:layout_marginTop="30dip"
+    android:background="#00000000"
+    android:gravity="right"
+    android:paddingRight="10dip"
+    android:paddingTop="5dip"
+    android:text="Total Minutes"
+    android:textColor="@color/podcast_row_count"
+    android:textSize="16sp"
+    android:typeface="sans" />
+
+<TextView android:layout_height="wrap_content" 
+    android:layout_width="fill_parent" 
+    android:id="@+id/txt_bar" 
+    android:height="2dip" 
+    android:layout_marginTop="42dip" 
+    android:layout_marginLeft="10dip" 
+    android:layout_marginRight="140dip">
+</TextView>
+</RelativeLayout>

@@ -4,16 +4,16 @@
 <item android:id="@+id/menu_sharetopodcastapp"
      android:icon="@drawable/ic_action_podcastapp"
      android:title="@string/podcast_sharetopodcastapp"
-     android:showAsAction="ifRoom|withText" />
+     android:showAsAction="always" />
 
 <item android:id="@+id/menu_sharetoother"
      android:icon="@drawable/ic_action_shareto"
      android:title="@string/podcast_shareto"
-     android:showAsAction="ifRoom|withText" />
+     android:showAsAction="always" />
 
 <item android:id="@+id/menu_copytoclip"
      android:icon="@drawable/ic_action_copy"
      android:title="@string/podcast_copytoclipboard"
-     android:showAsAction="ifRoom|withText" />
+     android:showAsAction="always" />
 
 </menu>

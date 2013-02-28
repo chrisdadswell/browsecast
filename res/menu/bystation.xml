@@ -10,6 +10,6 @@
     <item android:id="@+id/menu_bbcradio_www"
           android:icon="@drawable/ic_action_www"
           android:title="@string/bystation_bbc_www"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="ifRoom" />
 </menu>
 

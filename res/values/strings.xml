@@ -2,12 +2,12 @@
 <resources>
 <string name="app_name">BrowseCast HD</string>
 <string name="app_version">Version 1.0</string>
-<string name="app_description">BBC Podcast browsing application. Developed by Christian Dadswell</string>
-<string name="about_title">About</string><string name="about_text">"Thanks for downloading BrowseCast.
+<string name="app_description">BBC podcast browsing application. Developed by Christian Dadswell</string>
+<string name="about_title">About</string><string name="about_text">&quot;Thanks for downloading BrowseCast HD.
 \nThis is a very simple application to allow for easy searching/browsing of BBC Radio Podcasts.\n\n
 \nPlease feel free to feedback to the email address below if you have any problems or leave a comment on\n
 \nhttp://www.chrisdadswell.co.uk
-\nIf you enjoy this application, please rate and comment on Google Play. Thank you."</string>
+\nIf you enjoy this application, please rate and comment on Google Play. Thank you.&quot;</string>
 
 <string name="about_code_copyright">"Copyright © Christian Dadswell 2013 (chrisdadswell@gmail.com)
 \nLicensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 <string name="gettingstarted_title">Getting Started</string>
 <string name="gettingstarted_url">http://bit.ly/9ahlW6</string>
-<string name="gettingstarted_text">"Using BrowseCast:
+<string name="gettingstarted_text">&quot;Using BrowseCast HD:
 \nWhen you start BrowseCast for the first time it will download the latest BBC Podcasts listings to your SD card (/sdcard/browsecast/xml/podcasts.xml).
 The BBC update the Podcast listings daily, but you do not have to update daily if you do not wish to do so.
 \n:: The Dashboard ::
@@ -36,32 +36,29 @@ Browse Podcasts by Station - Returns a list of BBC Radio stations.\n\n
 (Flash and non Chrome browser required. Not compatible with Android Jelly Bean.)
 \n\nPodcast Help and Assistance - Learn about Podcasts and applications that can be used for Podcasting on Android.
 </string>
-<string name="search_label">Search for a Podcast</string>
-<string name="search_hint">Search for a Podcast</string>
+<string name="search_label">Search for a podcast</string>
+<string name="search_hint">Search for a podcast e.g., Keaveny</string>
 <string name="lists_title"></string>
-<string name="dashboard_about">About BrowseCast</string>
+<string name="dashboard_about">About BrowseCast HD</string>
 <string name="about_image">About Image</string>
 <string name="podcast_name">Podcast name</string>
 <string name="podcast_duration">Podcast duration</string>
 <string name="podcast_webpage">Podcast webpage</string>
 <string name="podcast_description">Podcast description</string>
-<string name="podcast_sharetopodcastapp">Share to default Podcast application</string>
-<string name="podcast_shareto">Share Podcast subscription with another application</string>
-<string name="podcast_copytoclipboard">Copy Podcast subscription to clipboard</string>
-<string name="dashboard_refresh">Refresh Podcast Information</string>
-<string name="dashboard_blog">Visit the BrowseCast blog</string>
-<string name="dashboard_rss">Add BrowseCast RSS feed</string>
+<string name="podcast_sharetopodcastapp">Share to default podcatcher application</string>
+<string name="podcast_shareto">Share podcast subscription with another application</string>
+<string name="podcast_copytoclipboard">Copy podcast subscription to clipboard</string>
+<string name="dashboard_refresh">Refresh podcast Information</string>
+<string name="dashboard_blog">Visit the BrowseCast HD blog</string>
+<string name="dashboard_rss">Add BrowseCast HD RSS feed</string>
 <string name="dashboard_twitter">BrowseCast on Twitter</string>
 <string name="dashboard_gplus">BrowseCast on Google+</string>
-<string name="dashboard_subtitle" ></string>
-<string name="dashboard_footer_outofdate">Podcast list update available, click the download icon</string>
-<string name="dashboard_footer_uptodate">Local listings status: Up to date</string>
-<string name="bystation_bbc_www">BBC Radio Stations Website</string>
+<string name="bystation_bbc_www">BBC radio stations website</string>
 <string name="url_bbcradio">http://www.bbc.co.uk/mobile/radio</string>
-<string name="dialog_nointernet_msg">A BBC Podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.</string>
+<string name="dialog_nointernet_msg">A BBC podcast listings file needs to be downloaded, but there appears to be no internet connection.\n\nPlease connect to the internet\nand relaunch BrowseCast.</string>
 <string name="dialog_nointernet_title">Cannot download file</string>
-<string name="dashboard_menu_bystation_subtitle">View available BBC Radio stations with Podcasts</string>
-<string name="dashboard_menu_bystation">Browse Podcasts by Station</string>
+<string name="dashboard_menu_bystation_subtitle">View available BBC radio stations with podcasts</string>
+<string name="dashboard_menu_bystation">Browse podcasts by station</string>
 <string name="schedules_setregion">Change your current region</string>
 <string name="schedules_current_region">Current region is set to </string>
 <string name="bystation_subtitle">Select a BBC station to view Podcasts</string>
@@ -73,7 +70,7 @@ Browse Podcasts by Station - Returns a list of BBC Radio stations.\n\n
 <string name="download_listings_dialog_body">\nDo you wish to re-download listings or continue with the current listings ?\n</string>
 <string name="toast_download_listings">Downloading Podcast listings, hold tight ...</string>
 <string name="toast_listings_outofdate">New Podcast listings file available</string>
-<string name="toast_podcasts_calculation">Calculating Podcasts per station ...</string>
+<string name="toast_podcasts_calculation">Calculating podcasts per radio station ...</string>
 <string name="toast_long_press_station">Long press a Station to view its mobile website</string>
 <string name="toast_image_description">BrowseCast Logo</string>
 <string name="toast_problem_podcast">There was a problem retrieving Podcast information</string>
@@ -82,5 +79,6 @@ Browse Podcasts by Station - Returns a list of BBC Radio stations.\n\n
 <string name="toast_no_podcasts_info">There is no podcasts information available at this time</string>
 <string name="toast_no_podcasts">No podcasts found from your search of </string>
 <string name="toast_no_podcasts_inlist">No podcast to view, click back and search again</string>
+<string name="dashboard_subtitle"/>
 
 </resources>
